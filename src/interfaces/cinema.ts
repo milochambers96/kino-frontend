@@ -1,4 +1,5 @@
 export interface ICinema {
+  _id: string;
   name: string;
   bio: string;
   address: string;

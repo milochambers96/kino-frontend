@@ -1,23 +1,26 @@
 import { ICinema } from "../interfaces/cinema";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function CinemaCard(cinema: ICinema) {
-  const [cinemas, setCinemas] = useState(null);
-
-  async function getCinemaData() {
-    const resp = await fetch("http://localhost:8000/api/cinemas");
-    const cinemaData = await resp.json();
-    setCinemas(cinemaData);
-  }
-
-  useEffect(() => {
-    getCinemaData();
-  }, []);
-
-  useEffect(() => {
-    if (cinemas) {
-      console.log(cinemas);
-    }
-  }, [cinemas]);
-  return <h2>{cinema.name}</h2>;
+function CinemaCard({ _id, name, image, area }: ICinema) {
+  return (
+    <div className="column is-one-third-desktop is-one-half-tablet">
+      <Link to={`/cinemas/${_id}`}>
+        <div className="card ">
+          <div className="card-header has-text-centered">
+            <div className="card-header-title">{name}</div>
+          </div>
+          <div className="card-image">
+            <figure className="image image-is1by1">
+              <img src={image} alt={`An image of ${name}`} />
+            </figure>
+          </div>
+          <div className="card-content has-text-centered">
+            <p>{area} London</p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
 }
+
+export default CinemaCard;
