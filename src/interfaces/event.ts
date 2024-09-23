@@ -8,6 +8,7 @@ export interface IEvent {
   recurringDate: string;
   eventLink: string;
   author: EventAuthor;
+  createdAt: string;
 }
 
 export interface ILocation {

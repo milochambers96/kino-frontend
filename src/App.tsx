@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import Signup from "./components/Signup";
 import CinemaList from "./components/CinemaList";
 import ShowCinema from "./components/ShowCinema";
 import ShowEvent from "./components/ShowEvent";
@@ -12,7 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<p>singup</p>} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<p>login</p>} />
 
         <Route path="/cinemas" element={<CinemaList />} />

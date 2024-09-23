@@ -1,7 +1,14 @@
 import { IEvent } from "../interfaces/event";
 import { Link } from "react-router-dom";
 
-function EventsThread({ _id, title, image, location, description }: IEvent) {
+function EventsThread({
+  _id,
+  title,
+  image,
+  author,
+  createdAt,
+  description,
+}: IEvent) {
   return (
     <article className="media ml-5">
       <figure className="media-left">
@@ -13,7 +20,10 @@ function EventsThread({ _id, title, image, location, description }: IEvent) {
         <div className="content">
           <p>
             <strong>{title}</strong>
-            <small> @{location.name}</small>
+            <small>
+              {" "}
+              posted by {author.username} @ {createdAt}
+            </small>
             <br />
             {description}
             <br />
