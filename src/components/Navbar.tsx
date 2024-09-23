@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../interfaces/user";
 
-interface NavbarProps {
-  user: null | IUser;
-  setUser: Function;
-}
+// interface NavbarProps {
+//   user: null | IUser;
+//   setUser: Function;
+// }
 
 function Navbar() {
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   return (
     <>
