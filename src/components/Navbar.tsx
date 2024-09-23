@@ -19,10 +19,10 @@ function Navbar() {
                 Home
               </Link>
               <Link to="/cinemas" className="navbar-item">
-                Cinema List
+                All Cinemas
               </Link>
               <Link to="/cinemas-map" className="navbar-item">
-                Cinema Map
+                Find your local Cinema
               </Link>
               <Link to="/signup" className="navbar-item">
                 Signup

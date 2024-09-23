@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import CinemaList from "./components/CinemaList";
-
+import ShowCinema from "./components/ShowCinema";
 function App() {
   return (
     <Router>
@@ -19,11 +19,8 @@ function App() {
 
         <Route path="/post-cinema" element={<p>Upload Cinema</p>} />
 
-        <Route path="/cinemas/:cinemaId" element={<p>Show Cinema</p>} />
-        <Route
-          path="/cineams/:cinemaId/event/:eventId"
-          element={<p>Show Event</p>}
-        />
+        <Route path="/cinemas/:cinemaId" element={<ShowCinema />} />
+        <Route path="/events/:eventId" element={<p>Show Event</p>} />
       </Routes>
     </Router>
   );
