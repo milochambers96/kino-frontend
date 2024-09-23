@@ -9,6 +9,17 @@ function EventsThread({
   createdAt,
   description,
 }: IEvent) {
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  //   const formattedTime = new Date(createdAt).toLocaleTimeString("en-GB", {
+  //     hour: "2-digit",
+  //     minute: "2-digit",
+  //   });
+
   return (
     <article className="media ml-5 box">
       <figure className="media-left">
@@ -22,7 +33,7 @@ function EventsThread({
             <strong>{title}</strong>
             <small>
               {" "}
-              posted by {author.username} @ {createdAt}
+              posted by {author.username} on {formattedDate}
             </small>
             <br />
             {description}
