@@ -10,7 +10,7 @@ function EventsThread({
   description,
 }: IEvent) {
   return (
-    <article className="media ml-5">
+    <article className="media ml-5 box">
       <figure className="media-left">
         <p className="image is-64x64">
           <img src={image} alt={`image for ${title}`} />
