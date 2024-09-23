@@ -46,8 +46,8 @@ function ShowCinema() {
 
               <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
                 {events.length > 0 ? (
-                  <div>
-                    <p className="has-text-centered">
+                  <div id="events-thread">
+                    <p className="has-text-centered mb-5">
                       Events hosted at {cinema?.name}
                     </p>
                     {events.map((event) => (

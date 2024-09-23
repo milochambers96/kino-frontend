@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import CinemaList from "./components/CinemaList";
 import ShowCinema from "./components/ShowCinema";
+import ShowEvent from "./components/ShowEvent";
 function App() {
   return (
     <Router>
@@ -20,7 +21,7 @@ function App() {
         <Route path="/post-cinema" element={<p>Upload Cinema</p>} />
 
         <Route path="/cinemas/:cinemaId" element={<ShowCinema />} />
-        <Route path="/events/:eventId" element={<p>Show Event</p>} />
+        <Route path="/events/:eventId" element={<ShowEvent />} />
       </Routes>
     </Router>
   );

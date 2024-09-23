@@ -7,11 +7,16 @@ export interface IEvent {
   specificDate: Date;
   recurringDate: string;
   eventLink: string;
-  author: string;
+  author: EventAuthor;
 }
 
 export interface ILocation {
   name: string;
   address: string;
   _id: string;
+}
+
+export interface EventAuthor {
+  _id: string;
+  username: string;
 }
