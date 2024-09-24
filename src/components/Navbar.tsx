@@ -3,7 +3,9 @@ import { IUser } from "../interfaces/user";
 
 interface NavbarProps {
   user: null | IUser;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   setUser: Function;
+  isCinemaOwner: boolean;
 }
 
 function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
@@ -30,6 +32,14 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
               <Link to="/cinemas-map" className="navbar-item">
                 Find your local Cinema
               </Link>
+              {isCinemaOwner && (
+                <Link to="/post-cinema" className="navbar-item">
+                  Upload A Cinema
+                </Link>
+              )}
+            </div>
+
+            <div className="navbar-end">
               {!user && (
                 <Link to="/signup" className="navbar-item">
                   Signup
@@ -40,10 +50,9 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
                   Login
                 </Link>
               )}
-              {isCinemaOwner && (
-                <Link to="/post-cinema" className="navbar-item">
-                  Upload A Cinema
-                </Link>
+
+              {user && (
+                <span className="navbar-item ">{`Hi ${user.username}, welcome back to Kino Connect`}</span>
               )}
               {user && (
                 <button
@@ -52,9 +61,6 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
                 >
                   Logout
                 </button>
-              )}
-              {user && (
-                <span className="navbar-item ">{`Welcome back ${user.username}`}</span>
               )}
             </div>
           </div>
