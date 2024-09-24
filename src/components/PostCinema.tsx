@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BoroughSelector from "./BoroughSelector";
 
 function PostCinema() {
   const [formData, setFormData] = useState({
@@ -37,7 +38,15 @@ function PostCinema() {
   const [borough, setBorough] = useState("");
 
   function handleChange(e: SyntheticEvent) {
-    return null;
+    const targetElement = e.target as HTMLInputElement;
+    const fieldName = targetElement.name;
+
+    if (fieldName === "area") {
+      setArea(targetElement.value);
+    }
+
+    const newFormData = { ...formData, [fieldName]: targetElement.value };
+    setFormData(newFormData);
   }
 
   function combineAddress() {
@@ -45,12 +54,26 @@ function PostCinema() {
     return `${buildingNumber} ${street}, ${city}, ${postcode}`;
   }
 
+  function handleSubmit(e: SyntheticEvent) {
+    e.preventDefault();
+    const combinedAddress = combineAddress();
+    const newCinemaData = {
+      ...formData,
+      address: combinedAddress,
+    };
+
+    console.log(newCinemaData);
+  }
+
   return (
     <div className="section has-background-primary">
       <div className="container">
         <div className="columns is-centered">
           <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-            <form className="box has-background-danger-dark is-radius-medium">
+            <form
+              className="box has-background-danger-dark is-radius-medium"
+              onSubmit={handleSubmit}
+            >
               <fieldset className="box">
                 <legend className="title">Basic Information</legend>
                 <div className="field">
@@ -72,7 +95,6 @@ function PostCinema() {
                     )}
                   </div>
                 </div>
-
                 <div className="field">
                   <label htmlFor="bio" className="label">
                     Cinema Bio
@@ -86,7 +108,6 @@ function PostCinema() {
                     ></textarea>
                   </div>
                 </div>
-
                 <div className="field">
                   <label className="label">Website</label>
                   <div className="control">
@@ -95,6 +116,18 @@ function PostCinema() {
                       type="text"
                       name="website"
                       value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Image</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      name="image"
+                      value={formData.image}
                       onChange={handleChange}
                     />
                   </div>
@@ -180,18 +213,11 @@ function PostCinema() {
                   </div>
                 </div>
 
-                <div className="field">
-                  <label className="label">Borough</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="text"
-                      name="borough"
-                      value={formData.borough}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
+                <BoroughSelector
+                  boroughData={formData.borough}
+                  area={area}
+                  updateForm={handleChange}
+                />
               </fieldset>
               <fieldset className="box">
                 <legend className="title">Additional Information</legend>
