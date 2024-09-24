@@ -1,5 +1,5 @@
 import { useState, SyntheticEvent } from "react";
-import BoroughSelector from "../BoroughSelector";
+import BoroughSelector from "./BoroughSelector";
 
 function CinemaForm({ initialData, onSubmit, formErrorData }) {
   const [formData, setFormData] = useState(initialData);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CinemaForm from "./Forms/CinemaForm";
+import CinemaForm from "../Forms/CinemaForm";
 
 function PostCinema() {
   const [formErrorData, setFormErrorData] = useState({});

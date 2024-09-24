@@ -14,33 +14,33 @@ function ShowEvent() {
 
   useEffect(() => {
     async function fetchEvent() {
-      console.log("Fetching event with ID:", eventId); // Log event ID
+      console.log("Fetching event with ID:", eventId);
       const resp = await fetch(`http://localhost:8000/api/events/${eventId}`);
 
       if (!resp.ok) {
-        console.error("Error fetching event:", resp.status); // Log HTTP error status
-        return; // Exit if there's an error
+        console.error("Error fetching event:", resp.status);
+        return;
       }
 
       const eventData = await resp.json();
-      console.log("Event data received:", eventData); // Log event data
+      console.log("Event data received:", eventData);
       setEvent(eventData);
     }
 
     async function fetchComments() {
-      console.log("Fetching comments for event ID:", eventId); // Log event ID
+      console.log("Fetching comments for event ID:", eventId);
       try {
         const resp = await fetch(
           `http://localhost:8000/api/events/${eventId}/comments`
         );
 
         if (!resp.ok) {
-          console.error("Error fetching comments:", resp.status); // Log HTTP error status
+          console.error("Error fetching comments:", resp.status);
           throw new Error(`HTTP error! status: ${resp.status}`);
         }
 
         const { eventComments } = await resp.json();
-        console.log("Comments received:", eventComments); // Log comments data
+        console.log("Comments received:", eventComments);
         setComments(eventComments);
       } catch (error) {
         console.error("Error fetching comments:", error);

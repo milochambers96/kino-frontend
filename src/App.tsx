@@ -7,8 +7,9 @@ import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import CinemaList from "./components/Post&DisplayCinemas/CinemaList";
-import PostCinema from "./components/PostCinema";
-import UpdateCinema from "./components/UpdateCinema";
+import PostCinema from "./components/Post&DisplayCinemas/PostCinema";
+import PostEvent from "./components/CinemaNotice/PostEvent";
+import UpdateCinema from "./components/CinemaNotice/UpdateCinema";
 import ShowCinema from "./components/CinemaNotice/ShowCinema";
 import ShowEvent from "./components/EventNotice/ShowEvent";
 import { IUser } from "./interfaces/user";
@@ -62,6 +63,8 @@ function App() {
 
         <Route path="/cinemas/:cinemaId" element={<ShowCinema user={user} />} />
         <Route path="/events/:eventId" element={<ShowEvent />} />
+
+        <Route path="/cinemas/:cinemaId/post-event" element={<PostEvent />} />
       </Routes>
     </Router>
   );

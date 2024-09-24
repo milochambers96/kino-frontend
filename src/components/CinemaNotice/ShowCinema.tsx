@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { IUser } from "../../interfaces/user";
 import { ICinema } from "../../interfaces/cinema";
 import { IEvent } from "../../interfaces/event";
@@ -55,7 +55,9 @@ function ShowCinema({ user }: { user: null | IUser }) {
                     <p className="has-text-centered mb-5">
                       Events hosted at {cinema?.name}
                     </p>
-                    <button className="button">Add a post</button>
+                    <Link to={`/cinemas/${cinemaId}/post-event`}>
+                      <button className="button">Add a post</button>
+                    </Link>
                     {events.map((event) => (
                       <EventsThread {...event} key={event._id} />
                     ))}

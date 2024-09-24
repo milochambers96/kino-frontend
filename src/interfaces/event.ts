@@ -4,8 +4,10 @@ export interface IEvent {
   location: ILocation;
   image: string;
   description: string;
-  specificDate: Date;
+  specificStartDate: Date;
+  specificEndDate: Date;
   recurringDate: string;
+  eventDateType: "specific" | "recurring";
   eventLink: string;
   author: EventAuthor;
   createdAt: string;

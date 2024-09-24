@@ -1,5 +1,5 @@
 import { useState, useEffect, SyntheticEvent } from "react";
-import { boroughs } from "../assets/boroughsList";
+import { boroughs } from "../../assets/boroughsList";
 
 interface BoroughSelectorProps {
   boroughData: string;

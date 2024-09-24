@@ -6,11 +6,28 @@ function EventNoticeBoard({
   author,
   image,
   description,
-  specificDate,
+  specificStartDate,
+  specificEndDate,
   recurringDate,
   eventLink,
 }: IEvent) {
-  const formattedDate = specificDate ? specificDate.toLocaleDateString() : "";
+  const formattedStartDate = new Date(specificStartDate).toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }
+  );
+
+  const formattedEndDate = new Date(specificEndDate).toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }
+  );
 
   return (
     <div id="event-details" className="card">
@@ -31,7 +48,11 @@ function EventNoticeBoard({
           <p>
             Notice posted by <strong>{author.username}</strong>
           </p>
-          {formattedDate && <p>Date: {formattedDate}</p>}
+          {formattedStartDate && (
+            <p>
+              Running from: {formattedStartDate} to {formattedEndDate}
+            </p>
+          )}
           {recurringDate && (
             <p>
               <strong>When?</strong> {recurringDate}

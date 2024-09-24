@@ -1,7 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import BoroughSelector from "./BoroughSelector";
+import BoroughSelector from "../Forms/BoroughSelector";
 
 function PostCinema() {
   const [formData, setFormData] = useState({
