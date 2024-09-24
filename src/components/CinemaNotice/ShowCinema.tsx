@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ICinema } from "../interfaces/cinema";
-import { IEvent } from "../interfaces/event";
+import { ICinema } from "../../interfaces/cinema";
+import { IEvent } from "../../interfaces/event";
 import CinemaNoticeBoard from "./CinemaNoticeBoard";
 import EventsThread from "./EventsThread";
 

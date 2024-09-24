@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IEvent } from "../interfaces/event";
-import { IComment } from "../interfaces/comment";
+import { IEvent } from "../../interfaces/event";
+import { IComment } from "../../interfaces/comment";
 import EventNoticeBoard from "./EventNoticeBoard";
 import CommentsThread from "./CommentsThread";
 

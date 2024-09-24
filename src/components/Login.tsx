@@ -2,8 +2,9 @@ import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const [loginFormData, setLoginFormData] = useState({
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+function Login({ fetchUser }: { fetchUser: Function }) {
+  const [formData, setformData] = useState({
     email: "",
     password: "",
   });
@@ -19,10 +20,10 @@ function Login() {
     const targetElement = e.target as HTMLInputElement;
     const fieldName = targetElement.name;
     const newFormData = {
-      ...loginFormData,
+      ...formData,
       [fieldName]: targetElement.value,
     };
-    setLoginFormData(newFormData);
+    setformData(newFormData);
   }
 
   async function handleSubmit(e: SyntheticEvent) {
@@ -32,8 +33,10 @@ function Login() {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(
         "http://localhost:8000/api/login",
-        loginFormData
+        formData
       );
+      localStorage.setItem("token", response.data.token);
+      fetchUser();
       navigate("/");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -66,7 +69,7 @@ function Login() {
                     type="text"
                     className="input"
                     name="email"
-                    value={loginFormData.email}
+                    value={formData.email}
                     onChange={handleChange}
                   />
                   {formErrorData.email && (
@@ -85,7 +88,7 @@ function Login() {
                     type="password"
                     className="input"
                     name="password"
-                    value={loginFormData.password}
+                    value={formData.password}
                     onChange={handleChange}
                   />
                   {formErrorData.password && (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ICinema } from "../interfaces/cinema";
+import { ICinema } from "../../interfaces/cinema";
 import CinemaCard from "./CinemaCard";
 
 type Cinemas = null | Array<ICinema>;

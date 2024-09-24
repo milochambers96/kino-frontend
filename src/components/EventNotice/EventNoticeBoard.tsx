@@ -1,4 +1,4 @@
-import { IEvent } from "../interfaces/event";
+import { IEvent } from "../../interfaces/event";
 
 function EventNoticeBoard({
   title,

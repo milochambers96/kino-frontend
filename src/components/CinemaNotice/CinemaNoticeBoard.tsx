@@ -1,4 +1,4 @@
-import { ICinema } from "../interfaces/cinema";
+import { ICinema } from "../../interfaces/cinema";
 
 function CinemaNoticeBoard({
   name,

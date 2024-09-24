@@ -1,4 +1,4 @@
-import { IComment } from "../interfaces/comment";
+import { IComment } from "../../interfaces/comment";
 
 function CommentsThread({ content, author, createdAt }: IComment) {
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {

@@ -1,14 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../interfaces/user";
 
+interface NavbarProps {
+  user: null | IUser;
+  setUser: Function;
+}
 
-// interface NavbarProps {
-//   user: null | IUser;
-//   setUser: Function;
-// }
+function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
+  const navigate = useNavigate();
 
-function Navbar() {
-  //   const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/");
+  }
 
   return (
     <>
@@ -25,17 +30,22 @@ function Navbar() {
               <Link to="/cinemas-map" className="navbar-item">
                 Find your local Cinema
               </Link>
-              <Link to="/signup" className="navbar-item">
-                Signup
-              </Link>
-              <Link to="/login" className="navbar-item">
-                Login
-              </Link>
-              <Link to="/post-cinema" className="navbar-item">
-                Upload A Cinema
-              </Link>
-
-              {/* {user && (
+              {!user && (
+                <Link to="/signup" className="navbar-item">
+                  Signup
+                </Link>
+              )}
+              {!user && (
+                <Link to="/login" className="navbar-item">
+                  Login
+                </Link>
+              )}
+              {isCinemaOwner && (
+                <Link to="/post-cinema" className="navbar-item">
+                  Upload A Cinema
+                </Link>
+              )}
+              {user && (
                 <button
                   onClick={logout}
                   className="button navbar-item is-ghost"
@@ -45,7 +55,7 @@ function Navbar() {
               )}
               {user && (
                 <span className="navbar-item ">{`Welcome back ${user.username}`}</span>
-              )} */}
+              )}
             </div>
           </div>
         </nav>
@@ -53,10 +63,5 @@ function Navbar() {
     </>
   );
 }
-
-//   function logout() {
-//     localStorage.removeItem("token");
-//     setUser(null);
-//     navigate("/");
 
 export default Navbar;

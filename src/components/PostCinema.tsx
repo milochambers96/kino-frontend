@@ -34,16 +34,11 @@ function PostCinema() {
     capacity: "",
   });
 
-  const [area, setArea] = useState("");
-  const [borough, setBorough] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(e: SyntheticEvent) {
     const targetElement = e.target as HTMLInputElement;
     const fieldName = targetElement.name;
-
-    if (fieldName === "area") {
-      setArea(targetElement.value);
-    }
 
     const newFormData = { ...formData, [fieldName]: targetElement.value };
     setFormData(newFormData);
@@ -54,15 +49,26 @@ function PostCinema() {
     return `${buildingNumber} ${street}, ${city}, ${postcode}`;
   }
 
-  function handleSubmit(e: SyntheticEvent) {
+  async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    const combinedAddress = combineAddress();
-    const newCinemaData = {
-      ...formData,
-      address: combinedAddress,
-    };
-
-    console.log(newCinemaData);
+    try {
+      const combinedAddress = combineAddress();
+      const completeCinemaData = {
+        ...formData,
+        address: combinedAddress,
+      };
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:8000/api/cinemas",
+        completeCinemaData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      navigate("/cinemas");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("THE ERROR IS: ", error);
+      setFormErrorData(error.response.data.errors);
+    }
   }
 
   return (
@@ -215,8 +221,8 @@ function PostCinema() {
 
                 <BoroughSelector
                   boroughData={formData.borough}
-                  area={area}
-                  updateForm={handleChange}
+                  area={formData.area}
+                  updateBoroughData={handleChange}
                 />
               </fieldset>
               <fieldset className="box">

@@ -1,4 +1,4 @@
-import { ICinema } from "../interfaces/cinema";
+import { ICinema } from "../../interfaces/cinema";
 import { Link } from "react-router-dom";
 
 function CinemaCard({ _id, name, image, area }: ICinema) {
