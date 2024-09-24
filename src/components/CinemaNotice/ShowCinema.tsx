@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { IUser } from "../../interfaces/user";
 import { ICinema } from "../../interfaces/cinema";
 import { IEvent } from "../../interfaces/event";
 import CinemaNoticeBoard from "./CinemaNoticeBoard";
 import EventsThread from "./EventsThread";
 
-function ShowCinema() {
+function ShowCinema({ user }: { user: null | IUser }) {
   const [cinema, setCinema] = useState<ICinema | null>(null);
   const [events, setEvents] = useState<IEvent[]>([]);
   const [isCinemaInfoLoading, setIsCinemaInfoLoading] = useState(true);
@@ -40,7 +41,11 @@ function ShowCinema() {
             <>
               {cinema && (
                 <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
-                  <CinemaNoticeBoard {...cinema} />
+                  <CinemaNoticeBoard
+                    {...cinema}
+                    user={user?._id || null}
+                    cinemaId={cinemaId || ""}
+                  />
                 </div>
               )}
 
@@ -50,6 +55,7 @@ function ShowCinema() {
                     <p className="has-text-centered mb-5">
                       Events hosted at {cinema?.name}
                     </p>
+                    <button className="button">Add a post</button>
                     {events.map((event) => (
                       <EventsThread {...event} key={event._id} />
                     ))}

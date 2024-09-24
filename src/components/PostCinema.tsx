@@ -58,6 +58,7 @@ function PostCinema() {
         address: combinedAddress,
       };
       const token = localStorage.getItem("token");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(
         "http://localhost:8000/api/cinemas",
         completeCinemaData,

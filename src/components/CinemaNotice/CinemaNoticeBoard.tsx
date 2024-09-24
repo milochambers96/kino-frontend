@@ -1,4 +1,11 @@
 import { ICinema } from "../../interfaces/cinema";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+interface NoticeBoardProps extends ICinema {
+  user: string | null;
+  cinemaId: string;
+}
 
 function CinemaNoticeBoard({
   name,
@@ -9,7 +16,26 @@ function CinemaNoticeBoard({
   screens,
   capacity,
   website,
-}: ICinema) {
+  owner,
+  user,
+  cinemaId,
+}: NoticeBoardProps) {
+  const navigate = useNavigate();
+
+  async function deleteCinema() {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`http://localhost:8000/api/movies/${cinemaId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      navigate("/cinemas");
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("The error is:", error);
+    }
+  }
+
   return (
     <div id="cinema-details" className="card">
       <header className="card-header">
@@ -43,6 +69,17 @@ function CinemaNoticeBoard({
           </p>
         </div>
       </div>
+      {owner === user && (
+        <div className="column">
+          <button onClick={deleteCinema} className="button  is-danger">
+            Remove Cinema
+          </button>
+          {/* <button
+                        onClick={updateCinema}
+                        className="button is-primary"
+                      ></button> */}
+        </div>
+      )}
     </div>
   );
 }

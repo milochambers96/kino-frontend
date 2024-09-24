@@ -58,8 +58,8 @@ function App() {
 
         <Route path="/post-cinema" element={<PostCinema />} />
 
-        <Route path="/cinemas/:cinemaId" element={<ShowCinema />} />
-        <Route path="/events/:eventId" element={<ShowEvent />} />
+        <Route path="/cinemas/:cinemaId" element={<ShowCinema user={user} />} />
+        <Route path="/events/:eventId" element={<ShowEvent user={user} />} />
       </Routes>
     </Router>
   );
