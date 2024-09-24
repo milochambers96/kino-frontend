@@ -1,6 +1,6 @@
 import { ICinema } from "../../interfaces/cinema";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 interface NoticeBoardProps extends ICinema {
   user: string | null;
@@ -51,15 +51,21 @@ function CinemaNoticeBoard({
           <p>
             <strong>Address:</strong> {address}
           </p>
-          <p>
-            <strong>Year Established:</strong> {yearEst}
-          </p>
-          <p>
-            <strong>Screens:</strong> {screens}
-          </p>
-          <p>
-            <strong>Capacity:</strong> {capacity}
-          </p>
+          {yearEst && (
+            <p>
+              <strong>Year Established:</strong> {yearEst}
+            </p>
+          )}
+          {screens && (
+            <p>
+              <strong>Screens:</strong> {screens}
+            </p>
+          )}
+          {capacity && (
+            <p>
+              <strong>Capacity:</strong> {capacity}
+            </p>
+          )}
           <p>{bio}</p>
           <p>
             Discover more about {name}{" "}
@@ -74,10 +80,10 @@ function CinemaNoticeBoard({
           <button onClick={deleteCinema} className="button  is-danger">
             Remove Cinema
           </button>
-          {/* <button
-                        onClick={updateCinema}
-                        className="button is-primary"
-                      ></button> */}
+
+          <Link to={`/edit-cinema/${cinemaId}`}>
+            <button className="button is-primary">Update Cinema</button>
+          </Link>
         </div>
       )}
     </div>

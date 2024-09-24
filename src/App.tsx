@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import CinemaList from "./components/Post&DisplayCinemas/CinemaList";
 import PostCinema from "./components/PostCinema";
+import UpdateCinema from "./components/UpdateCinema";
 import ShowCinema from "./components/CinemaNotice/ShowCinema";
 import ShowEvent from "./components/EventNotice/ShowEvent";
 import { IUser } from "./interfaces/user";
@@ -57,9 +58,10 @@ function App() {
         <Route path="/cinemas-map" element={<p>CinemaMap</p>} />
 
         <Route path="/post-cinema" element={<PostCinema />} />
+        <Route path="/edit-cinema/:cinemaId" element={<UpdateCinema />} />
 
         <Route path="/cinemas/:cinemaId" element={<ShowCinema user={user} />} />
-        <Route path="/events/:eventId" element={<ShowEvent user={user} />} />
+        <Route path="/events/:eventId" element={<ShowEvent />} />
       </Routes>
     </Router>
   );
