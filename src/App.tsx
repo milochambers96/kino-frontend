@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import CinemaList from "./components/CinemaList";
+import PostCinema from "./components/PostCinema";
 import ShowCinema from "./components/ShowCinema";
 import ShowEvent from "./components/ShowEvent";
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Route path="/cinemas" element={<CinemaList />} />
         <Route path="/cinemas-map" element={<p>CinemaMap</p>} />
 
-        <Route path="/post-cinema" element={<p>Upload Cinema</p>} />
+        <Route path="/post-cinema" element={<PostCinema />} />
 
         <Route path="/cinemas/:cinemaId" element={<ShowCinema />} />
         <Route path="/events/:eventId" element={<ShowEvent />} />

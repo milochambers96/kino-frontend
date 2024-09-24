@@ -4,6 +4,7 @@ export interface ICinema {
   bio: string;
   address: string;
   area: "North" | "East" | "South" | "West" | "Central";
+  borough: string;
   image: string;
   website: string;
   yearEst: number;
