@@ -4,6 +4,7 @@ import { IEvent } from "../../interfaces/event";
 import { IComment } from "../../interfaces/comment";
 import EventNoticeBoard from "./EventNoticeBoard";
 import CommentsThread from "./CommentsThread";
+import CommentBox from "./CommentBox";
 import { IUser } from "../../interfaces/user";
 
 function ShowEvent({ user }: { user: null | IUser }) {
@@ -27,32 +28,31 @@ function ShowEvent({ user }: { user: null | IUser }) {
       console.log("Event data received:", eventData);
       setEvent(eventData);
     }
-
-    async function fetchComments() {
-      console.log("Fetching comments for event ID:", eventId);
-      try {
-        const resp = await fetch(
-          `http://localhost:8000/api/events/${eventId}/comments`
-        );
-
-        if (!resp.ok) {
-          console.error("Error fetching comments:", resp.status);
-          throw new Error(`HTTP error! status: ${resp.status}`);
-        }
-
-        const { eventComments } = await resp.json();
-        console.log("Comments received:", eventComments);
-        setComments(eventComments);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      } finally {
-        setIsEventInfoLoading(false);
-      }
-    }
-
     fetchEvent();
     fetchComments();
   }, [eventId]);
+
+  async function fetchComments() {
+    console.log("Fetching comments for event ID:", eventId);
+    try {
+      const resp = await fetch(
+        `http://localhost:8000/api/events/${eventId}/comments`
+      );
+
+      if (!resp.ok) {
+        console.error("Error fetching comments:", resp.status);
+        throw new Error(`HTTP error! status: ${resp.status}`);
+      }
+
+      const { eventComments } = await resp.json();
+      console.log("Comments received:", eventComments);
+      setComments(eventComments);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    } finally {
+      setIsEventInfoLoading(false);
+    }
+  }
 
   return (
     <section className="section">
@@ -73,13 +73,26 @@ function ShowEvent({ user }: { user: null | IUser }) {
               )}
 
               <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
+                <p className="has-text-centered mb-5">
+                  Discussion board for {event?.title}
+                </p>
+                {user ? (
+                  <CommentBox
+                    eventId={eventId || ""}
+                    fetchComments={fetchComments}
+                  />
+                ) : (
+                  <p className="has-text-centered">Login to post a comment</p>
+                )}
                 {comments.length > 0 ? (
                   <div id="events-thread">
-                    <p className="has-text-centered mb-5">
-                      Discussion board for {event?.title}
-                    </p>
                     {comments.map((comment) => (
-                      <CommentsThread {...comment} key={comment._id} />
+                      <CommentsThread
+                        {...comment}
+                        key={comment._id}
+                        user={user?._id || null}
+                        eventAuthor={event?.author._id || ""}
+                      />
                     ))}
                   </div>
                 ) : (

@@ -210,7 +210,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }) {
         </div>
       </fieldset>
       <div className="field is-flex is-justify-content-center">
-        <button className="button">Post Cinema</button>
+        <button className="button">Submit</button>
       </div>
     </form>
   );
