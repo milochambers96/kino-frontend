@@ -73,7 +73,7 @@ function ShowEvent({ user }: { user: null | IUser }) {
               )}
 
               <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
-                <p className="has-text-centered mb-5">
+                <p className="has-text-centered subtitle mb-5">
                   Discussion board for {event?.title}
                 </p>
                 {user ? (

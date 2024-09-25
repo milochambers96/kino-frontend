@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, useEffect } from "react";
+import React, { useState, SyntheticEvent } from "react";
 import axios from "axios";
 
 interface CommentBoxProps {
@@ -44,8 +44,8 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
 
   return (
     <section className="section">
-      <div className="container">
-        <h2 className="subtitle">Add a Comment</h2>
+      <div className="container box">
+        <h2 className="subtitle is-5">Add a Comment</h2>
         <form onSubmit={handleSubmit}>
           <div className="field">
             <div className="control">
