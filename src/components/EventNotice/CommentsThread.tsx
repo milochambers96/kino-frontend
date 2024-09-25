@@ -4,6 +4,7 @@ import axios from "axios";
 interface CommentsThreadProps extends IComment {
   user: string | null;
   eventAuthor?: string;
+  fetchComments: () => void;
 }
 
 function CommentsThread({
@@ -14,6 +15,7 @@ function CommentsThread({
   _id,
   user,
   eventAuthor,
+  fetchComments,
 }: CommentsThreadProps) {
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -33,11 +35,13 @@ function CommentsThread({
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:8000/api/events/${eventId}/comments${commentId}`,
+        `http://localhost:8000/api/events/${eventId}/comments/${commentId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      fetchComments();
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log("The error is: ", error);

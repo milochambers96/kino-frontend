@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { useState, SyntheticEvent, useEffect } from "react";
 import axios from "axios";
 
 interface CommentBoxProps {
@@ -15,9 +15,9 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
     setComment(newCommentContent);
   }
 
-  function handleSubmit(e: SyntheticEvent) {
+  async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    postComment();
+    await postComment();
     fetchComments();
   }
 

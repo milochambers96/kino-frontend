@@ -92,6 +92,7 @@ function ShowEvent({ user }: { user: null | IUser }) {
                         key={comment._id}
                         user={user?._id || null}
                         eventAuthor={event?.author._id || ""}
+                        fetchComments={fetchComments}
                       />
                     ))}
                   </div>
