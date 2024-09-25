@@ -1,5 +1,11 @@
 import { IEvent } from "../../interfaces/event";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
+interface NoticeBoardProps extends IEvent {
+  user: string | null;
+  eventId: string;
+}
 function EventNoticeBoard({
   title,
   location,
@@ -10,7 +16,10 @@ function EventNoticeBoard({
   specificEndDate,
   recurringDate,
   eventLink,
-}: IEvent) {
+  user,
+  eventId,
+}: NoticeBoardProps) {
+  const navigate = useNavigate();
   const formattedStartDate = new Date(specificStartDate).toLocaleDateString(
     "en-GB",
     {
@@ -28,6 +37,25 @@ function EventNoticeBoard({
       year: "numeric",
     }
   );
+
+  const cinemaId = location._id;
+
+  async function deleteEvent() {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(
+        `http://localhost:8000/api/cinemas/${cinemaId}/events/${eventId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      navigate(`/cinemas/${cinemaId}`);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("The error is:", error);
+    }
+  }
 
   return (
     <div id="event-details" className="card">
@@ -66,6 +94,20 @@ function EventNoticeBoard({
           </p>
         </div>
       </div>
+      {(user === author._id || user === location.owner) && (
+        <div className="columns is-centered">
+          <div className="column is-narrow">
+            <button onClick={deleteEvent} className="button is-danger">
+              Remove Event
+            </button>
+          </div>
+          <div className="column is-narrow">
+            <Link to={`/events/${eventId}/update-event`}>
+              <button className="button is-primary">Update Event</button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

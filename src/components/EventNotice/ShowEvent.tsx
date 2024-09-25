@@ -4,8 +4,9 @@ import { IEvent } from "../../interfaces/event";
 import { IComment } from "../../interfaces/comment";
 import EventNoticeBoard from "./EventNoticeBoard";
 import CommentsThread from "./CommentsThread";
+import { IUser } from "../../interfaces/user";
 
-function ShowEvent() {
+function ShowEvent({ user }: { user: null | IUser }) {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [comments, setComments] = useState<IComment[]>([]);
   const [isEventInfoLoading, setIsEventInfoLoading] = useState(true);
@@ -63,7 +64,11 @@ function ShowEvent() {
             <>
               {event && (
                 <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
-                  <EventNoticeBoard {...event} />
+                  <EventNoticeBoard
+                    {...event}
+                    user={user?._id || null}
+                    eventId={eventId || ""}
+                  />
                 </div>
               )}
 

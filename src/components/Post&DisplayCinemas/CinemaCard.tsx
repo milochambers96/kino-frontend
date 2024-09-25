@@ -1,7 +1,7 @@
 import { ICinema } from "../../interfaces/cinema";
 import { Link } from "react-router-dom";
 
-function CinemaCard({ _id, name, image, area }: ICinema) {
+function CinemaCard({ _id, name, image, area, borough }: ICinema) {
   return (
     <div className="column is-one-third-desktop is-one-half-tablet">
       <Link to={`/cinemas/${_id}`}>
@@ -15,7 +15,9 @@ function CinemaCard({ _id, name, image, area }: ICinema) {
             </figure>
           </div>
           <div className="card-content has-text-centered">
-            <p>{area} London</p>
+            <p>
+              {area} London - {borough}
+            </p>
           </div>
         </div>
       </Link>

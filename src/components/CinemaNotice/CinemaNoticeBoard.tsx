@@ -25,7 +25,7 @@ function CinemaNoticeBoard({
   async function deleteCinema() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8000/api/movies/${cinemaId}`, {
+      await axios.delete(`http://localhost:8000/api/cinema/${cinemaId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/cinemas");
@@ -76,14 +76,17 @@ function CinemaNoticeBoard({
         </div>
       </div>
       {owner === user && (
-        <div className="column">
-          <button onClick={deleteCinema} className="button  is-danger">
-            Remove Cinema
-          </button>
-
-          <Link to={`/edit-cinema/${cinemaId}`}>
-            <button className="button is-primary">Update Cinema</button>
-          </Link>
+        <div className="columns is-centered">
+          <div className="column is-narrow">
+            <button onClick={deleteCinema} className="button  is-danger">
+              Remove Cinema
+            </button>
+          </div>
+          <div className="column is-narrow">
+            <Link to={`/edit-cinema/${cinemaId}`}>
+              <button className="button is-primary">Update Cinema</button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

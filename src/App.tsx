@@ -62,9 +62,10 @@ function App() {
         <Route path="/edit-cinema/:cinemaId" element={<UpdateCinema />} />
 
         <Route path="/cinemas/:cinemaId" element={<ShowCinema user={user} />} />
-        <Route path="/events/:eventId" element={<ShowEvent />} />
+        <Route path="/events/:eventId" element={<ShowEvent user={user} />} />
 
         <Route path="/cinemas/:cinemaId/post-event" element={<PostEvent />} />
+        <Route path="/events/:eventId/update-event" element={<PostEvent />} />
       </Routes>
     </Router>
   );

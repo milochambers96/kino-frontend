@@ -16,6 +16,7 @@ export interface IEvent {
 export interface ILocation {
   name: string;
   address: string;
+  owner: string;
   _id: string;
 }
 
