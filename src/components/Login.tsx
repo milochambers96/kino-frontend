@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function Login({ fetchUser }: { fetchUser: Function }) {
@@ -95,9 +95,16 @@ function Login({ fetchUser }: { fetchUser: Function }) {
                     )}
                   </div>
                 </div>
-                <div className="field is-flex is-justify-content-center">
+                <div className="field is-flex is-justify-content-center mt-3">
                   <button className="button is-link">Login</button>
                 </div>{" "}
+                <div className="has-text-centered mt-5">
+                  <p>
+                    Don't have an account? Signup{" "}
+                    <Link to={"/signup"}>here</Link> to connect with the Kino
+                    community.
+                  </p>
+                </div>
               </form>
             </div>
           </div>

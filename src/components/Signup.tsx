@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
   const [signupFormData, setSignupFormData] = useState({
@@ -159,9 +159,15 @@ function Signup() {
                     )}
                   </div>
                 </div>
-                <div className="field is-flex is-justify-content-center">
+                <div className="field is-flex is-justify-content-center mt-4">
                   <button className="button is-link">Signup</button>
                 </div>{" "}
+                <div className="has-text-centered mt-5">
+                  <p>
+                    Already part of the community? Re-connect with Kino{" "}
+                    <Link to={"/login"}>here</Link>
+                  </p>
+                </div>
               </form>
             </div>
           </div>
