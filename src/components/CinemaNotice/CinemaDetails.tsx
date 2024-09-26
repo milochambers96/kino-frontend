@@ -30,8 +30,7 @@ function CinemaDetails({
       });
       navigate("/cinemas");
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("The error is:", error);
     }
   }

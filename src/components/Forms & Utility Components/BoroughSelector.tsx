@@ -15,7 +15,7 @@ function BoroughSelector({
   const [boroughOptions, setBoroughOptions] = useState<string[]>([]);
 
   useEffect(() => {
-    setBoroughOptions(boroughs[area] || []);
+    setBoroughOptions(boroughs[area as keyof typeof boroughs] || []);
   }, [area]);
 
   return (

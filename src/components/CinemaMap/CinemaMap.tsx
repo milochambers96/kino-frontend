@@ -12,8 +12,8 @@ const CinemaMap: React.FC = () => {
       style: "mapbox://styles/mapbox/streets-v12",
       center: [-0.1276, 51.5074],
       zoom: 10,
-      scrollZoom: false, // Disable scroll zoom
-      doubleClickZoom: false, // Disable double-click zoom
+      scrollZoom: false, 
+      doubleClickZoom: false, 
       boxZoom: false,
     });
 
@@ -41,8 +41,7 @@ const CinemaMap: React.FC = () => {
           }
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error fetching cinemas:", error);
       }
     };

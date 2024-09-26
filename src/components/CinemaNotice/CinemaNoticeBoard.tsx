@@ -57,9 +57,15 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                       <p className="subtitle mt-3">
                         Events hosted at {cinema?.name}
                       </p>
-                      <Link to={`/cinemas/${cinemaId}/post-event`}>
-                        <button className="button is-link">Add a post</button>
-                      </Link>
+                      {user ? (
+                        <Link to={`/cinemas/${cinemaId}/post-event`}>
+                          <button className="button is-link">Add a post</button>
+                        </Link>
+                      ) : (
+                        <p>
+                          <Link to={"/login"}>Login </Link>to add a post
+                        </p>
+                      )}
                     </div>
                     {events.map((event) => (
                       <EventsThread {...event} key={event._id} />

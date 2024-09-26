@@ -3,8 +3,7 @@ import { IUser } from "../interfaces/user";
 
 interface NavbarProps {
   user: null | IUser;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  setUser: Function;
+  setUser: (user: IUser | null) => void;
   isCinemaOwner: boolean;
 }
 

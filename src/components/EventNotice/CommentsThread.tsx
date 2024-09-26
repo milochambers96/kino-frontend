@@ -17,8 +17,8 @@ function CommentsThread({
   user,
   fetchComments,
 }: CommentsThreadProps) {
-  const [isEditing, setIsEditing] = useState(false); // Track whether the user is editing
-  const [editedComment, setEditedComment] = useState(content); // Store the updated comment content
+  const [isEditing, setIsEditing] = useState(false); 
+  const [editedComment, setEditedComment] = useState(content); 
 
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -34,7 +34,6 @@ function CommentsThread({
   const commentId = _id;
   const eventId = event._id;
 
-  // Handle comment deletion
   async function deleteComment() {
     try {
       const token = localStorage.getItem("token");
@@ -45,8 +44,7 @@ function CommentsThread({
         }
       );
       fetchComments();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("The error is: ", error);
     }
   }
@@ -66,8 +64,7 @@ function CommentsThread({
       );
       setIsEditing(false);
       fetchComments();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error updating comment: ", error);
     }
   }

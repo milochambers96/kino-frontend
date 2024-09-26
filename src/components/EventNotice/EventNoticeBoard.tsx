@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { IUser } from "../../interfaces/user";
 import { IEvent } from "../../interfaces/event";
@@ -15,25 +15,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
 
   const { eventId } = useParams();
 
-  useEffect(() => {
-    async function fetchEvent() {
-      console.log("Fetching event with ID:", eventId);
-      const resp = await fetch(`http://localhost:8000/api/events/${eventId}`);
-
-      if (!resp.ok) {
-        console.error("Error fetching event:", resp.status);
-        return;
-      }
-
-      const eventData = await resp.json();
-      console.log("Event data received:", eventData);
-      setEvent(eventData);
-    }
-    fetchEvent();
-    fetchComments();
-  }, [eventId]);
-
-  async function fetchComments() {
+  const fetchComments = useCallback(async () => {
     console.log("Fetching comments for event ID:", eventId);
     try {
       const resp = await fetch(
@@ -53,7 +35,25 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [eventId]);
+
+  useEffect(() => {
+    async function fetchEvent() {
+      console.log("Fetching event with ID:", eventId);
+      const resp = await fetch(`http://localhost:8000/api/events/${eventId}`);
+
+      if (!resp.ok) {
+        console.error("Error fetching event:", resp.status);
+        return;
+      }
+
+      const eventData = await resp.json();
+      console.log("Event data received:", eventData);
+      setEvent(eventData);
+    }
+    fetchEvent();
+    fetchComments();
+  }, [eventId, fetchComments]);
 
   return (
     <section className="section">

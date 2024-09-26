@@ -50,10 +50,8 @@ function EventDetails({
         }
       );
       navigate(`/cinemas/${cinemaId}`);
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log("The error is:", error);
+    } catch (error: unknown) {
+      console.log("The follow error occured when deleting an event:", error);
     }
   }
 
