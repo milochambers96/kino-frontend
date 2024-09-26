@@ -1,11 +1,21 @@
 import { useState, SyntheticEvent } from "react";
+import { EventFormData } from "../../interfaces/eventForm";
+import { cloudinaryUpload } from "./ImageUploader";
 
-function EventForm({ initialData, onSubmit, formErrorData }) {
+interface FormProps {
+  initialData: EventFormData;
+  onSubmit: (formData: EventFormData) => Promise<void>;
+  formErrorData: Partial<Record<keyof EventFormData, string>>;
+}
+
+function EventForm({ initialData, onSubmit, formErrorData }: FormProps) {
   const [formData, setFormData] = useState({
     ...initialData,
     specificDate: "",
     recurringDate: "",
   });
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
   const [eventDateType, setEventDateType] = useState("specific");
 
   function handleChange(e: SyntheticEvent) {
@@ -14,6 +24,13 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
 
     const newFormData = { ...formData, [fieldName]: targetElement.value };
     setFormData(newFormData);
+  }
+
+  function handleFileChange(e: SyntheticEvent) {
+    const targetElement = e.target as HTMLInputElement;
+    if (targetElement.files && targetElement.files.length > 0) {
+      setImageFile(targetElement.files[0]);
+    }
   }
 
   function handleDateTypeChange(e: SyntheticEvent) {
@@ -31,6 +48,16 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
           ? formData.recurringDate
           : formData.specificDate,
     };
+
+    if (imageFile) {
+      try {
+        const imageUrl = await cloudinaryUpload(imageFile);
+        completeEventData.image = imageUrl;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     await onSubmit(completeEventData);
   }
 
@@ -75,15 +102,9 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
         </div>
 
         <div className="field">
-          <label className="label">Image</label>
+          <label className="label">Event Image</label>
           <div className="control">
-            <input
-              className="input"
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-            />
+            <input type="file" accept="image/*" onChange={handleFileChange} />
             {formErrorData.image && (
               <small className="has-text-warning">{formErrorData.image}</small>
             )}

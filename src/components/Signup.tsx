@@ -32,11 +32,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.post(
-        "http://localhost:8000/api/signup",
-        signupFormData
-      );
+      await axios.post("http://localhost:8000/api/signup", signupFormData);
       navigate("/login");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -164,8 +160,8 @@ function Signup() {
                 </div>{" "}
                 <div className="has-text-centered mt-5">
                   <p>
-                    Already part of the community? Re-connect with Kino{" "}
-                    <Link to={"/login"}>here</Link>
+                    Already have an account? Re-connect with Kino Community{" "}
+                    <Link to={"/login"}>here</Link>.
                   </p>
                 </div>
               </form>

@@ -39,9 +39,7 @@ function PostEvent() {
                 specificStartDate: "",
                 specificEndDate: "",
                 recurringDate: "",
-                eventDateType: "",
                 eventLink: "",
-                capacity: "",
               }}
               onSubmit={handleSubmit}
               formErrorData={formErrorData}

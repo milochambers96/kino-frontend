@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
-import BoroughSelector from "./BoroughSelector";
 import { CinemaFormData } from "../../interfaces/cinemaForm";
+import { cloudinaryUpload } from "./ImageUploader";
+import BoroughSelector from "./BoroughSelector";
 
 interface FormProps {
   initialData: CinemaFormData;
@@ -10,6 +11,7 @@ interface FormProps {
 
 function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
   const [formData, setFormData] = useState(initialData);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   function handleChange(e: SyntheticEvent) {
     const targetElement = e.target as HTMLInputElement;
@@ -17,6 +19,13 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
 
     const newFormData = { ...formData, [fieldName]: targetElement.value };
     setFormData(newFormData);
+  }
+
+  function handleFileChange(e: SyntheticEvent) {
+    const targetElement = e.target as HTMLInputElement;
+    if (targetElement.files && targetElement.files.length > 0) {
+      setImageFile(targetElement.files[0]);
+    }
   }
 
   function combineAddress() {
@@ -31,6 +40,16 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
       ...formData,
       address: combinedAddress,
     };
+
+    if (imageFile) {
+      try {
+        const imageUrl = await cloudinaryUpload(imageFile);
+        completeCinemaData.image = imageUrl;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     console.log("Comp form:", completeCinemaData);
     await onSubmit(completeCinemaData);
   }
@@ -90,15 +109,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
           </div>
         </div>
         <div className="field">
-          <label className="label">Image</label>
+          <label className="label">Cinema Picture</label>
           <div className="control">
-            <input
-              className="input"
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-            />
+            <input type="file" accept="image/*" onChange={handleFileChange} />
             {formErrorData.image && (
               <small className="has-text-warning">{formErrorData.image}</small>
             )}
