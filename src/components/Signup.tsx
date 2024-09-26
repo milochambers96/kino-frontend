@@ -53,7 +53,7 @@ function Signup() {
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-              <form onSubmit={handleSubmit} className="transparent-form">
+              <form onSubmit={handleSubmit} className="kino-form">
                 <div className="field">
                   <label htmlFor="username" className="label">
                     Username:
@@ -157,10 +157,10 @@ function Signup() {
                 </div>
                 <div className="field is-flex is-justify-content-center mt-4">
                   <button className="button is-link">Signup</button>
-                </div>{" "}
+                </div>
                 <div className="has-text-centered mt-5">
                   <p>
-                    Already have an account? Re-connect with Kino Community{" "}
+                    Already have an account? Re-connect with the Kino community{" "}
                     <Link to={"/login"}>here</Link>.
                   </p>
                 </div>

@@ -56,10 +56,7 @@ function EventDetails({
   }
 
   return (
-    <div
-      id="event-details"
-      className="card has-background-danger-dark has-text-white-ter"
-    >
+    <div id="event-details" className="card kino-grey has-text-white-ter">
       <header className="card-header">
         <p className="card-header-title">
           {title} @ <Link to={`/cinemas/${cinemaId}`}> {location.name}</Link>

@@ -16,7 +16,7 @@ function EventsThread({
   });
 
   return (
-    <article className="media ml-5 box">
+    <article className="media ml-5 box kino-grey">
       <figure className="media-left">
         <p className="image is-64x64">
           <img src={image} alt={`image for ${title}`} />

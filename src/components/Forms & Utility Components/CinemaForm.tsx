@@ -56,7 +56,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <fieldset className="box">
+      <fieldset className="mb-6">
         <legend className="title">Basic Information</legend>
         <div className="field">
           <label htmlFor="name" className="label">
@@ -118,7 +118,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
           </div>
         </div>
       </fieldset>
-      <fieldset className="box">
+      <fieldset className="mb-3">
         <legend className="title">Address</legend>
         <div className="field">
           <label htmlFor="buildingNo" className="label">
@@ -188,7 +188,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
           <small className="has-text-warning">{formErrorData.postcode}</small>
         )}
       </fieldset>
-      <fieldset className="box">
+      <fieldset className="mb-3">
         <legend className="title">Location</legend>
         <div className="field">
           <label className="label">Area</label>
@@ -218,7 +218,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
           <small className="has-text-warning">{formErrorData.borough}</small>
         )}
       </fieldset>
-      <fieldset className="box">
+      <fieldset className="mb-3">
         <legend className="title">Additional Information</legend>
         <div className="field">
           <label className="label">Year Established</label>
@@ -263,7 +263,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
         </div>
       </fieldset>
       <div className="field is-flex is-justify-content-center">
-        <button className="button">Submit</button>
+        <button className="button is-link">Submit</button>
       </div>
     </form>
   );

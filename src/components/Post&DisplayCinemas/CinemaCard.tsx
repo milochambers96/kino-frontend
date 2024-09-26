@@ -5,9 +5,9 @@ function CinemaCard({ _id, name, image, area, borough }: ICinema) {
   return (
     <div className="column is-one-third-desktop is-one-half-tablet">
       <Link to={`/cinemas/${_id}`}>
-        <div className="card has-background-danger-dark has-text-white-ter">
+        <div className="card kino-grey has-text-white-ter">
           <div className="card-header">
-            <div className="card-header-title d">{name}</div>
+            <div className="card-header-title">{name}</div>
           </div>
           <div className="card-image">
             <figure className="image image-is1by1">

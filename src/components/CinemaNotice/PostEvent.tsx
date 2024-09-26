@@ -27,23 +27,27 @@ function PostEvent() {
     }
   }
   return (
-    <div className="section kino-background">
-      <div className="container">
-        <div className="columns is-centered">
-          <div className="column is-half">
-            <EventForm
-              initialData={{
-                title: "",
-                image: "",
-                description: "",
-                specificStartDate: "",
-                specificEndDate: "",
-                recurringDate: "",
-                eventLink: "",
-              }}
-              onSubmit={handleSubmit}
-              formErrorData={formErrorData}
-            />
+    <div className="kino-background">
+      <div className="section mt-5">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half">
+              <div className="kino-form">
+                <EventForm
+                  initialData={{
+                    title: "",
+                    image: "",
+                    description: "",
+                    specificStartDate: "",
+                    specificEndDate: "",
+                    recurringDate: "",
+                    eventLink: "",
+                  }}
+                  onSubmit={handleSubmit}
+                  formErrorData={formErrorData}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

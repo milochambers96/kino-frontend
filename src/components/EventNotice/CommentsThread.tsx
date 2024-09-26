@@ -17,8 +17,8 @@ function CommentsThread({
   user,
   fetchComments,
 }: CommentsThreadProps) {
-  const [isEditing, setIsEditing] = useState(false); 
-  const [editedComment, setEditedComment] = useState(content); 
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedComment, setEditedComment] = useState(content);
 
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -70,7 +70,7 @@ function CommentsThread({
   }
 
   return (
-    <article className="media ml-5 box">
+    <article className="media ml-5 box kino-grey">
       <div className="media-content">
         <div className="content">
           <p>

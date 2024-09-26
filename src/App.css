@@ -1,6 +1,70 @@
 @import url("https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css");
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.kino-background {
+  background-image: url("/assets/Kino-Connect-Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+}
+
+.kino-form-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.kino-form {
+  max-height: 80vh; /* Adjust this value if needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: rgba(6, 6, 6, 0.8); /* Semi-transparent background */
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.kino-scroll {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.kino-event-thread-header {
+  background-color: rgba(6, 6, 6, 0.9); /* Semi-transparent background */
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex; /* Use Flexbox */
+  justify-content: space-between; /* Space between the items */
+  align-items: center;
+  width: 100%;
+}
+
+.kino-title {
+  background-color: rgba(6, 6, 6, 0.522);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* .kino-notice-board {
+  background-color: rgba(6, 6, 6, 0.498);
+  border-radius: 12px;
+} */
+
+.kino-grey {
+  background-color: rgba(6, 6, 6, 0.9); /* Semi-transparent background */
+}
+
 .map-container {
   display: flex;
   justify-content: center;
@@ -11,24 +75,6 @@
 #map {
   width: 75%;
   height: 75vh;
-}
-
-.kino-background {
-  background-image: url("src/assets/Kino-Connect-Background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-}
-
-.transparent-form {
-  background-color: rgba(6, 6, 6, 0.8);
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .fullscreen-loader {
@@ -46,22 +92,4 @@
 
 .loader-content {
   text-align: center;
-}
-
-.kino-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.708);
-  z-index: 1;
-}
-
-.kino-hero-container {
-  border-radius: 15px;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  margin-bottom: 90px;
 }

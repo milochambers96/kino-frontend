@@ -41,15 +41,19 @@ function UpdateCinema() {
   }
 
   return (
-    <div className="section mt-5">
-      <div className="container">
-        <div className="columns is-centered">
-          <div className="column is-half">
-            <CinemaForm
-              initialData={initialData}
-              onSubmit={handleSubmit}
-              formErrorData={formErrorData}
-            />
+    <div className="kino-background">
+      <div className="section mt-5">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
+              <div className="kino-form">
+                <CinemaForm
+                  initialData={initialData}
+                  onSubmit={handleSubmit}
+                  formErrorData={formErrorData}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

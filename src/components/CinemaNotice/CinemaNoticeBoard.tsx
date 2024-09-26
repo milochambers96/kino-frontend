@@ -33,27 +33,27 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
   }, [cinemaId]);
 
   return (
-    <section className="section">
-      <div className="container mt-5">
-        <div className="columns is-multiline is-centered">
-          {isLoading ? (
-            <FullPageLoader />
-          ) : (
-            <>
-              {cinema && (
-                <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
-                  <CinemaDetails
-                    {...cinema}
-                    user={user?._id || null}
-                    cinemaId={cinemaId || ""}
-                  />
-                </div>
-              )}
+    <div className="kino-background">
+      <section className="section">
+        <div className="container mt-5">
+          <div className="columns is-multiline is-centered">
+            {isLoading ? (
+              <FullPageLoader />
+            ) : (
+              <>
+                {cinema && (
+                  <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile kino-scroll">
+                    <CinemaDetails
+                      {...cinema}
+                      user={user?._id || null}
+                      cinemaId={cinemaId || ""}
+                    />
+                  </div>
+                )}
 
-              <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
-                {events.length > 0 ? (
+                <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile kino-scroll">
                   <div id="events-thread">
-                    <div className="is-flex is-justify-content-space-between is-align-items-center mb-5">
+                    <div className="kino-event-thread-header">
                       <p className="subtitle mt-3">
                         Events hosted at {cinema?.name}
                       </p>
@@ -67,21 +67,25 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                         </p>
                       )}
                     </div>
-                    {events.map((event) => (
-                      <EventsThread {...event} key={event._id} />
-                    ))}
+                    <div>
+                      {events.length > 0 ? (
+                        events.map((event) => (
+                          <EventsThread {...event} key={event._id} />
+                        ))
+                      ) : (
+                        <p className="has-text-centered">
+                          No events have been posted at {cinema?.name}.
+                        </p>
+                      )}
+                    </div>
                   </div>
-                ) : (
-                  <p className="has-text-centered">
-                    No events have been posted at {cinema?.name}.
-                  </p>
-                )}
-              </div>
-            </>
-          )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
 

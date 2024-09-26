@@ -56,7 +56,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   }, [eventId, fetchComments]);
 
   return (
-    <section className="section">
+    <section className="section kino-background">
       <div className="container mt-5">
         <div className="columns is-multiline is-centered">
           {isLoading ? (
@@ -64,7 +64,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
           ) : (
             <>
               {event && (
-                <div className="column is-half">
+                <div className="column is-half kino-scroll">
                   <EventDetails
                     {...event}
                     user={user?._id || null}
@@ -73,11 +73,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                 </div>
               )}
 
-              <div className="column is-half">
-                <p className="has-text-centered subtitle mb-5">
-                  Discussion board for {event?.title}
-                </p>
-
+              <div className="column is-half kino-scroll">
                 {user ? (
                   <CommentBox
                     eventId={eventId || ""}

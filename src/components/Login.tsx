@@ -56,7 +56,7 @@ function Login({ fetchUser }: { fetchUser: Function }) {
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-              <form onSubmit={handleSubmit} className="transparent-form">
+              <form onSubmit={handleSubmit} className="kino-form">
                 <div className="field">
                   <label htmlFor="email" className="label">
                     Email:
@@ -97,7 +97,7 @@ function Login({ fetchUser }: { fetchUser: Function }) {
                 </div>
                 <div className="field is-flex is-justify-content-center mt-3">
                   <button className="button is-link">Login</button>
-                </div>{" "}
+                </div>
                 <div className="has-text-centered mt-5">
                   <p>
                     Don't have an account? Signup{" "}

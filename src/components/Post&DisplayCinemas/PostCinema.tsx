@@ -24,29 +24,33 @@ function PostCinema() {
   }
 
   return (
-    <div className="section mt-5">
-      <div className="container">
-        <div className="columns is-centered">
-          <div className="column is-half">
-            <CinemaForm
-              initialData={{
-                name: "",
-                bio: "",
-                area: "",
-                borough: "",
-                image: "",
-                website: "",
-                yearEst: 0,
-                screens: 0,
-                capacity: 0,
-                buildingNo: "",
-                street: "",
-                city: "London",
-                postcode: "",
-              }}
-              onSubmit={handleSubmit}
-              formErrorData={formErrorData}
-            />
+    <div className="kino-background">
+      <div className="section mt-5">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half">
+              <div className="kino-form">
+                <CinemaForm
+                  initialData={{
+                    name: "",
+                    bio: "",
+                    area: "",
+                    borough: "",
+                    image: "",
+                    website: "",
+                    yearEst: 0,
+                    screens: 0,
+                    capacity: 0,
+                    buildingNo: "",
+                    street: "",
+                    city: "London",
+                    postcode: "",
+                  }}
+                  onSubmit={handleSubmit}
+                  formErrorData={formErrorData}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

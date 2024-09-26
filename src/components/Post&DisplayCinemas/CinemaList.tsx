@@ -21,11 +21,11 @@ function CinemaList() {
   }, []);
 
   return (
-    <section className="section">
+    <section className="section kino-background">
       {isLoading ? (
         <FullPageLoader />
       ) : (
-        <div className="container mt-5">
+        <div className="container mt-5 kino-scroll">
           <div className="columns is-multiline">
             {cinemas?.map((cinema) => (
               <CinemaCard {...cinema} key={cinema._id} />

@@ -29,17 +29,13 @@ function CinemaDetails({
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/cinemas");
-
     } catch (error: unknown) {
       console.log("The error is:", error);
     }
   }
 
   return (
-    <div
-      id="cinema-details"
-      className="card has-background-danger-dark has-text-white-ter"
-    >
+    <div id="cinema-details" className="card kino-grey has-text-white-ter">
       <header className="card-header">
         <p className="card-header-title">{name}</p>
       </header>
@@ -89,7 +85,7 @@ function CinemaDetails({
           </div>
           <div className="column is-narrow">
             <Link to={`/edit-cinema/${cinemaId}`}>
-              <button className="button  is-link">Update Cinema</button>
+              <button className="button is-link">Update Cinema</button>
             </Link>
           </div>
         </div>

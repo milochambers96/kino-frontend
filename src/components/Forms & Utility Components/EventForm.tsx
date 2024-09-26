@@ -63,165 +63,163 @@ function EventForm({ initialData, onSubmit, formErrorData }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <fieldset className="box">
-        <div className="field">
-          <label htmlFor="title" className="label">
-            Event Title
-          </label>
-          <div className="control">
+      <div className="field">
+        <label htmlFor="title" className="label">
+          Event Title
+        </label>
+        <div className="control">
+          <input
+            type="text"
+            className="input"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+          {formErrorData.title && (
+            <small className="has-text-warning">{formErrorData.title}</small>
+          )}
+        </div>
+      </div>
+
+      <div className="field">
+        <label htmlFor="description" className="label">
+          Event Description
+        </label>
+        <div className="control">
+          <textarea
+            className="textarea"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          {formErrorData.description && (
+            <small className="has-text-warning">
+              {formErrorData.description}
+            </small>
+          )}
+        </div>
+      </div>
+
+      <div className="field mb-5">
+        <label className="label">Event Image</label>
+        <div className="control">
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+          {formErrorData.image && (
+            <small className="has-text-warning">{formErrorData.image}</small>
+          )}
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Event Link</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            name="eventLink"
+            value={formData.eventLink}
+            onChange={handleChange}
+          />
+          {formErrorData.eventLink && (
+            <small className="has-text-warning">
+              {formErrorData.eventLink}
+            </small>
+          )}
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Select Date Type</label>
+        <div className="control" style={{ marginBottom: "1rem" }}>
+          <label className="radio" style={{ marginRight: "20px" }}>
             <input
-              type="text"
-              className="input"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
+              type="radio"
+              name="dateType"
+              value="specific"
+              checked={eventDateType === "specific"}
+              onChange={handleDateTypeChange}
             />
-            {formErrorData.title && (
-              <small className="has-text-warning">{formErrorData.title}</small>
-            )}
-          </div>
-        </div>
-
-        <div className="field">
-          <label htmlFor="description" className="label">
-            Event Description
+            Specific Date
           </label>
-          <div className="control">
-            <textarea
-              className="textarea"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-            {formErrorData.description && (
-              <small className="has-text-warning">
-                {formErrorData.description}
-              </small>
-            )}
-          </div>
-        </div>
-
-        <div className="field">
-          <label className="label">Event Image</label>
-          <div className="control">
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            {formErrorData.image && (
-              <small className="has-text-warning">{formErrorData.image}</small>
-            )}
-          </div>
-        </div>
-
-        <div className="field">
-          <label className="label">Event Link</label>
-          <div className="control">
+          <label className="radio">
             <input
-              className="input"
-              type="text"
-              name="eventLink"
-              value={formData.eventLink}
-              onChange={handleChange}
+              type="radio"
+              name="dateType"
+              value="recurring"
+              checked={eventDateType === "recurring"}
+              onChange={handleDateTypeChange}
             />
-            {formErrorData.eventLink && (
-              <small className="has-text-warning">
-                {formErrorData.eventLink}
-              </small>
-            )}
-          </div>
+            Recurring
+          </label>
         </div>
+      </div>
 
-        <div className="field">
-          <label className="label">Select Date Type</label>
-          <div className="control" style={{ marginBottom: "1rem" }}>
-            <label className="radio" style={{ marginRight: "20px" }}>
-              <input
-                type="radio"
-                name="dateType"
-                value="specific"
-                checked={eventDateType === "specific"}
-                onChange={handleDateTypeChange}
-              />
-              Specific Date
-            </label>
-            <label className="radio">
-              <input
-                type="radio"
-                name="dateType"
-                value="recurring"
-                checked={eventDateType === "recurring"}
-                onChange={handleDateTypeChange}
-              />
-              Recurring
-            </label>
-          </div>
-        </div>
-
-        {eventDateType === "specific" && (
-          <>
-            <div className="field">
-              <label className="label">Start Date</label>
-              <div className="control">
-                <input
-                  type="date"
-                  className="input"
-                  name="specificStartDate"
-                  value={formData.specificStartDate}
-                  onChange={handleChange}
-                />
-                {formErrorData.specificStartDate && (
-                  <small className="has-text-warning">
-                    {formErrorData.specificStartDate}
-                  </small>
-                )}
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">End Date</label>
-              <div className="control">
-                <input
-                  type="date"
-                  className="input"
-                  name="specificEndDate"
-                  value={formData.specificEndDate}
-                  onChange={handleChange}
-                />
-                {formErrorData.specificEndDate && (
-                  <small className="has-text-warning">
-                    {formErrorData.specificEndDate}
-                  </small>
-                )}
-              </div>
-            </div>
-          </>
-        )}
-
-        {eventDateType === "recurring" && (
+      {eventDateType === "specific" && (
+        <>
           <div className="field">
-            <label className="label">Recurring Date Description</label>
+            <label className="label">Start Date</label>
             <div className="control">
               <input
-                type="text"
+                type="date"
                 className="input"
-                name="recurringDate"
-                value={formData.recurringDate}
+                name="specificStartDate"
+                value={formData.specificStartDate}
                 onChange={handleChange}
-                placeholder="e.g., Weekly, Every Monday"
               />
-              {formErrorData.recurringDate && (
+              {formErrorData.specificStartDate && (
                 <small className="has-text-warning">
-                  {formErrorData.recurringDate}
+                  {formErrorData.specificStartDate}
                 </small>
               )}
             </div>
           </div>
-        )}
 
-        <div className="field is-grouped is-grouped-centered">
-          <button className="button is-link" type="submit">
-            Submit
-          </button>
+          <div className="field">
+            <label className="label">End Date</label>
+            <div className="control">
+              <input
+                type="date"
+                className="input"
+                name="specificEndDate"
+                value={formData.specificEndDate}
+                onChange={handleChange}
+              />
+              {formErrorData.specificEndDate && (
+                <small className="has-text-warning">
+                  {formErrorData.specificEndDate}
+                </small>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+
+      {eventDateType === "recurring" && (
+        <div className="field">
+          <label className="label">Recurring Date Description</label>
+          <div className="control">
+            <input
+              type="text"
+              className="input"
+              name="recurringDate"
+              value={formData.recurringDate}
+              onChange={handleChange}
+              placeholder="e.g., Weekly, Every Monday"
+            />
+            {formErrorData.recurringDate && (
+              <small className="has-text-warning">
+                {formErrorData.recurringDate}
+              </small>
+            )}
+          </div>
         </div>
-      </fieldset>
+      )}
+
+      <div className="field is-grouped is-grouped-centered">
+        <button className="button is-link" type="submit">
+          Submit
+        </button>
+      </div>
     </form>
   );
 }
