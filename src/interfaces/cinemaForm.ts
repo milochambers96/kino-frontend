@@ -3,7 +3,7 @@ export interface CinemaFormData {
   bio: string;
   website: string;
   image: string;
-  buildingNumber: string;
+  buildingNo: string;
   street: string;
   city: string;
   postcode: string;

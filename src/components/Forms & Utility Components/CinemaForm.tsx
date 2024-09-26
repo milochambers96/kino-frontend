@@ -20,8 +20,8 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
   }
 
   function combineAddress() {
-    const { buildingNumber, street, city, postcode } = formData;
-    return `${buildingNumber} ${street}, ${city}, ${postcode}`;
+    const { buildingNo, street, city, postcode } = formData;
+    return `${buildingNo} ${street}, ${city}, ${postcode}`;
   }
 
   async function handleSubmit(e: SyntheticEvent) {
@@ -31,6 +31,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
       ...formData,
       address: combinedAddress,
     };
+    console.log("Comp form:", completeCinemaData);
     await onSubmit(completeCinemaData);
   }
 
@@ -96,15 +97,15 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
       <fieldset className="box">
         <legend className="title">Address</legend>
         <div className="field">
-          <label htmlFor="buildingNumber" className="label">
+          <label htmlFor="buildingNo" className="label">
             Building Number
           </label>
           <div className="control">
             <input
               type="text"
               className="input"
-              name="buildingNumber"
-              value={formData.buildingNumber}
+              name="buildingNo"
+              value={formData.buildingNo}
               onChange={handleChange}
             />
           </div>
@@ -186,6 +187,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               name="yearEst"
               value={formData.yearEst}
               onChange={handleChange}
+              style={{ appearance: "textfield" }}
             />
           </div>
         </div>
@@ -199,6 +201,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               name="screens"
               value={formData.screens}
               onChange={handleChange}
+              style={{ appearance: "textfield" }}
             />
           </div>
         </div>
@@ -212,6 +215,7 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               name="capacity"
               value={formData.capacity}
               onChange={handleChange}
+              style={{ appearance: "textfield" }}
             />
           </div>
         </div>

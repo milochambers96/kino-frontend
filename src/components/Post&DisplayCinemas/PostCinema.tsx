@@ -39,7 +39,7 @@ function PostCinema() {
                 yearEst: 0,
                 screens: 0,
                 capacity: 0,
-                buildingNumber: "",
+                buildingNo: "",
                 street: "",
                 city: "London",
                 postcode: "",
