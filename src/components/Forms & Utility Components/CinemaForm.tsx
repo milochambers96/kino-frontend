@@ -67,6 +67,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               value={formData.bio}
               onChange={handleChange}
             ></textarea>
+            {formErrorData.bio && (
+              <small className="has-text-warning">{formErrorData.bio}</small>
+            )}
           </div>
         </div>
         <div className="field">
@@ -79,6 +82,11 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               value={formData.website}
               onChange={handleChange}
             />
+            {formErrorData.website && (
+              <small className="has-text-warning">
+                {formErrorData.website}
+              </small>
+            )}
           </div>
         </div>
         <div className="field">
@@ -91,6 +99,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
               value={formData.image}
               onChange={handleChange}
             />
+            {formErrorData.image && (
+              <small className="has-text-warning">{formErrorData.image}</small>
+            )}
           </div>
         </div>
       </fieldset>
@@ -110,6 +121,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
             />
           </div>
         </div>
+        {formErrorData.buildingNo && (
+          <small className="has-text-warning">{formErrorData.buildingNo}</small>
+        )}
 
         <div className="field">
           <label htmlFor="street" className="label">
@@ -125,6 +139,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
             />
           </div>
         </div>
+        {formErrorData.street && (
+          <small className="has-text-warning">{formErrorData.street}</small>
+        )}
 
         <div className="field">
           <label className="label">City</label>
@@ -138,6 +155,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
             />
           </div>
         </div>
+        {formErrorData.city && (
+          <small className="has-text-warning">{formErrorData.city}</small>
+        )}
 
         <div className="field">
           <label className="label">Postcode</label>
@@ -151,6 +171,9 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
             />
           </div>
         </div>
+        {formErrorData.postcode && (
+          <small className="has-text-warning">{formErrorData.postcode}</small>
+        )}
       </fieldset>
       <fieldset className="box">
         <legend className="title">Location</legend>
@@ -169,12 +192,18 @@ function CinemaForm({ initialData, onSubmit, formErrorData }: FormProps) {
             </div>
           </div>
         </div>
+        {formErrorData.area && (
+          <small className="has-text-warning">{formErrorData.area}</small>
+        )}
 
         <BoroughSelector
           boroughData={formData.borough}
           area={formData.area}
           updateBoroughData={handleChange}
         />
+        {formErrorData.borough && (
+          <small className="has-text-warning">{formErrorData.borough}</small>
+        )}
       </fieldset>
       <fieldset className="box">
         <legend className="title">Additional Information</legend>
