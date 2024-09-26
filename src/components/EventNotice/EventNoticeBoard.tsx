@@ -58,9 +58,14 @@ function EventNoticeBoard({
   }
 
   return (
-    <div id="event-details" className="card">
+    <div
+      id="event-details"
+      className="card has-background-danger-dark has-text-white-ter"
+    >
       <header className="card-header">
-        <p className="card-header-title">{title}</p>
+        <p className="card-header-title">
+          {title} @ {location.name}
+        </p>
       </header>
       <div className="card-image">
         <figure className="image is-4by3">
@@ -70,13 +75,11 @@ function EventNoticeBoard({
       <div className="card-content">
         <div className="content">
           <p>{description}</p>
-          <p>
-            Event hosted @ <strong>{location.name}</strong>
-          </p>
+
           <p>
             Notice posted by <strong>{author.username}</strong>
           </p>
-          {formattedStartDate && (
+          {!recurringDate && (
             <p>
               Running from: {formattedStartDate} to {formattedEndDate}
             </p>
@@ -97,13 +100,16 @@ function EventNoticeBoard({
       {(user === author._id || user === location.owner) && (
         <div className="columns is-centered">
           <div className="column is-narrow">
-            <button onClick={deleteEvent} className="button is-danger">
+            <button
+              onClick={deleteEvent}
+              className="button has-background-danger-20"
+            >
               Remove Event
             </button>
           </div>
           <div className="column is-narrow">
             <Link to={`/events/${eventId}/update-event`}>
-              <button className="button is-primary">Update Event</button>
+              <button className="button is-link">Update Event</button>
             </Link>
           </div>
         </div>

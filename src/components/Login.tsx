@@ -52,56 +52,55 @@ function Login({ fetchUser }: { fetchUser: Function }) {
   }
 
   return (
-    <div className="section ">
-      <div className="container">
-        <div className="columns is-centered">
-          <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-            <form
-              onSubmit={handleSubmit}
-              className="box has-background-danger-dark is-radius-medium"
-            >
-              <div className="field">
-                <label htmlFor="email" className="label">
-                  Email:
-                </label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  {formErrorData.email && (
-                    <small className="has-text-warning">
-                      {formErrorData.email}
-                    </small>
-                  )}
+    <div className="kino-background">
+      <div className="section mt-5">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
+              <form onSubmit={handleSubmit} className="transparent-form">
+                <div className="field">
+                  <label htmlFor="email" className="label">
+                    Email:
+                  </label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    {formErrorData.email && (
+                      <small className="has-text-warning">
+                        {formErrorData.email}
+                      </small>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="field">
-                <label htmlFor="password" className="label">
-                  Password:
-                </label>
-                <div className="control">
-                  <input
-                    type="password"
-                    className="input"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                  {formErrorData.password && (
-                    <small className="has-text-warning">
-                      {formErrorData.password}
-                    </small>
-                  )}
+                <div className="field">
+                  <label htmlFor="password" className="label">
+                    Password:
+                  </label>
+                  <div className="control">
+                    <input
+                      type="password"
+                      className="input"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    {formErrorData.password && (
+                      <small className="has-text-warning">
+                        {formErrorData.password}
+                      </small>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="field is-flex is-justify-content-center">
-                <button className="button">Login</button>
-              </div>{" "}
-            </form>
+                <div className="field is-flex is-justify-content-center">
+                  <button className="button is-link">Login</button>
+                </div>{" "}
+              </form>
+            </div>
           </div>
         </div>
       </div>

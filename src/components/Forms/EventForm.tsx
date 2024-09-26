@@ -110,8 +110,8 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
 
         <div className="field">
           <label className="label">Select Date Type</label>
-          <div className="control">
-            <label className="radio">
+          <div className="control" style={{ marginBottom: "1rem" }}>
+            <label className="radio" style={{ marginRight: "20px" }}>
               <input
                 type="radio"
                 name="dateType"
@@ -135,43 +135,43 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
         </div>
 
         {eventDateType === "specific" && (
-          <div className="field">
-            <label className="label">Start Date</label>
-            <div className="control">
-              <input
-                type="date"
-                className="input"
-                name="specificStartDate"
-                value={formData.specificStartDate}
-                onChange={handleChange}
-              />
-              {formErrorData.specificStartDate && (
-                <small className="has-text-warning">
-                  {formErrorData.specificStartDate}
-                </small>
-              )}
+          <>
+            <div className="field">
+              <label className="label">Start Date</label>
+              <div className="control">
+                <input
+                  type="date"
+                  className="input"
+                  name="specificStartDate"
+                  value={formData.specificStartDate}
+                  onChange={handleChange}
+                />
+                {formErrorData.specificStartDate && (
+                  <small className="has-text-warning">
+                    {formErrorData.specificStartDate}
+                  </small>
+                )}
+              </div>
             </div>
-          </div>
-        )}
 
-        {eventDateType === "specific" && (
-          <div className="field">
-            <label className="label">End Date</label>
-            <div className="control">
-              <input
-                type="date"
-                className="input"
-                name="specificEndDate"
-                value={formData.specificEndDate}
-                onChange={handleChange}
-              />
-              {formErrorData.specificEndDate && (
-                <small className="has-text-warning">
-                  {formErrorData.specificEndDate}
-                </small>
-              )}
+            <div className="field">
+              <label className="label">End Date</label>
+              <div className="control">
+                <input
+                  type="date"
+                  className="input"
+                  name="specificEndDate"
+                  value={formData.specificEndDate}
+                  onChange={handleChange}
+                />
+                {formErrorData.specificEndDate && (
+                  <small className="has-text-warning">
+                    {formErrorData.specificEndDate}
+                  </small>
+                )}
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         {eventDateType === "recurring" && (
@@ -195,8 +195,8 @@ function EventForm({ initialData, onSubmit, formErrorData }) {
           </div>
         )}
 
-        <div className="field">
-          <button className="button is-primary" type="submit">
+        <div className="field is-grouped is-grouped-centered">
+          <button className="button is-link" type="submit">
             Submit
           </button>
         </div>

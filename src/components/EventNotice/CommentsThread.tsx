@@ -107,17 +107,17 @@ function CommentsThread({
                 </button>
               ) : (
                 <button
-                  className="button is-small is-primary mt-3"
+                  className="button is-small is-link mt-3"
                   onClick={() => {
                     console.log("Edit button clicked");
                     setIsEditing(true);
                   }}
                 >
-                  Edit
+                  ✎
                 </button>
               )}
               <button
-                className="button is-small is-danger mt-3 ml-2"
+                className="button is-small has-background-danger-20 mt-3 ml-2"
                 onClick={deleteComment}
               >
                 🆇

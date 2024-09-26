@@ -20,20 +20,26 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
   return (
     <>
       <header>
-        <nav className="navbar is-dark">
+        <nav className="navbar has-background-danger-dark is-fixed-top">
           <div className="container">
             <div className="navbar-brand">
-              <Link to="/" className="navbar-item">
+              <Link to="/" className="navbar-item has-text-white-ter">
                 Home
               </Link>
-              <Link to="/cinemas" className="navbar-item">
+              <Link to="/cinemas" className="navbar-item has-text-white-ter">
                 All Cinemas
               </Link>
-              <Link to="/cinemas-map" className="navbar-item">
+              <Link
+                to="/cinemas-map"
+                className="navbar-item has-text-white-ter"
+              >
                 Find your local Cinema
               </Link>
               {isCinemaOwner && (
-                <Link to="/post-cinema" className="navbar-item">
+                <Link
+                  to="/post-cinema"
+                  className="navbar-item has-text-white-ter"
+                >
                   Upload A Cinema
                 </Link>
               )}
@@ -41,18 +47,18 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
 
             <div className="navbar-end">
               {!user && (
-                <Link to="/signup" className="navbar-item">
+                <Link to="/signup" className="navbar-item has-text-white-ter">
                   Signup
                 </Link>
               )}
               {!user && (
-                <Link to="/login" className="navbar-item">
+                <Link to="/login" className="navbar-item has-text-white-ter">
                   Login
                 </Link>
               )}
 
               {user && (
-                <span className="navbar-item ">{`Hi ${user.username}, welcome back to Kino Connect`}</span>
+                <span className="navbar-item has-text-white-ter">{`Hi ${user.username}, welcome back to Kino Connect`}</span>
               )}
               {user && (
                 <button

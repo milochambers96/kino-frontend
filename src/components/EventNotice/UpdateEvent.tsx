@@ -47,11 +47,15 @@ function UpdateEvent() {
   return (
     <div className="section">
       <div className="container">
-        <EventForm
-          initialData={initialData}
-          onSubmit={handleSubmit}
-          formErrorData={formErrorData}
-        />
+        <div className="columns is-centered">
+          <div className="column is-half">
+            <EventForm
+              initialData={initialData}
+              onSubmit={handleSubmit}
+              formErrorData={formErrorData}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

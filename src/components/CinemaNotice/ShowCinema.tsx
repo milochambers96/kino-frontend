@@ -33,10 +33,10 @@ function ShowCinema({ user }: { user: null | IUser }) {
 
   return (
     <section className="section">
-      <div className="container">
+      <div className="container mt-5">
         <div className="columns is-multiline is-centered">
           {isCinemaInfoLoading ? (
-            <p className="has-text-centered">Loading...</p>
+            <p className="has-text-centered title">Loading...</p>
           ) : (
             <>
               {cinema && (
@@ -52,12 +52,14 @@ function ShowCinema({ user }: { user: null | IUser }) {
               <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
                 {events.length > 0 ? (
                   <div id="events-thread">
-                    <p className="has-text-centered mb-5">
-                      Events hosted at {cinema?.name}
-                    </p>
-                    <Link to={`/cinemas/${cinemaId}/post-event`}>
-                      <button className="button">Add a post</button>
-                    </Link>
+                    <div className="is-flex is-justify-content-space-between is-align-items-center mb-5">
+                      <p className="subtitle mt-3">
+                        Events hosted at {cinema?.name}
+                      </p>
+                      <Link to={`/cinemas/${cinemaId}/post-event`}>
+                        <button className="button is-link">Add a post</button>
+                      </Link>
+                    </div>
                     {events.map((event) => (
                       <EventsThread {...event} key={event._id} />
                     ))}

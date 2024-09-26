@@ -56,14 +56,14 @@ function ShowEvent({ user }: { user: null | IUser }) {
 
   return (
     <section className="section">
-      <div className="container">
+      <div className="container mt-5">
         <div className="columns is-multiline is-centered">
           {isEventInfoLoading ? (
-            <p className="has-text-centered">Loading...</p>
+            <p className="has-text-centered title">Loading...</p>
           ) : (
             <>
               {event && (
-                <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
+                <div className="column is-half">
                   <EventNoticeBoard
                     {...event}
                     user={user?._id || null}
@@ -72,10 +72,12 @@ function ShowEvent({ user }: { user: null | IUser }) {
                 </div>
               )}
 
-              <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
+              <div className="column is-half">
                 <p className="has-text-centered subtitle mb-5">
                   Discussion board for {event?.title}
                 </p>
+
+                {/* CommentBox */}
                 {user ? (
                   <CommentBox
                     eventId={eventId || ""}
@@ -84,6 +86,8 @@ function ShowEvent({ user }: { user: null | IUser }) {
                 ) : (
                   <p className="has-text-centered">Login to post a comment</p>
                 )}
+
+                {/* CommentsThread */}
                 {comments.length > 0 ? (
                   <div id="events-thread">
                     {comments.map((comment) => (
@@ -97,7 +101,7 @@ function ShowEvent({ user }: { user: null | IUser }) {
                     ))}
                   </div>
                 ) : (
-                  <p className="has-text-centered">
+                  <p className="has-text-centered subtitle">
                     No comments have been posted for {event?.title}.
                   </p>
                 )}

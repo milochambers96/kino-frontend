@@ -19,7 +19,7 @@ function CinemaList() {
 
   return (
     <section className="section">
-      <div className="container">
+      <div className="container mt-5">
         <div className="columns is-multiline">
           {cinemas?.map((cinema) => (
             <CinemaCard {...cinema} key={cinema._id} />
