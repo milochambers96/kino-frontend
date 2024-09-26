@@ -1,120 +1,117 @@
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { IUser } from "../../interfaces/user";
 import { IEvent } from "../../interfaces/event";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { IComment } from "../../interfaces/comment";
+import EventDetails from "./EventDetails";
+import CommentsThread from "./CommentsThread";
+import CommentBox from "./CommentBox";
+import FullPageLoader from "../Forms & Utility Components/FullPageLoader";
 
-interface NoticeBoardProps extends IEvent {
-  user: string | null;
-  eventId: string;
-}
-function EventNoticeBoard({
-  title,
-  location,
-  author,
-  image,
-  description,
-  specificStartDate,
-  specificEndDate,
-  recurringDate,
-  eventLink,
-  user,
-  eventId,
-}: NoticeBoardProps) {
-  const navigate = useNavigate();
-  const formattedStartDate = new Date(specificStartDate).toLocaleDateString(
-    "en-GB",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
+function EventNoticeBoard({ user }: { user: null | IUser }) {
+  const [event, setEvent] = useState<IEvent | null>(null);
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { eventId } = useParams();
+
+  useEffect(() => {
+    async function fetchEvent() {
+      console.log("Fetching event with ID:", eventId);
+      const resp = await fetch(`http://localhost:8000/api/events/${eventId}`);
+
+      if (!resp.ok) {
+        console.error("Error fetching event:", resp.status);
+        return;
+      }
+
+      const eventData = await resp.json();
+      console.log("Event data received:", eventData);
+      setEvent(eventData);
     }
-  );
+    fetchEvent();
+    fetchComments();
+  }, [eventId]);
 
-  const formattedEndDate = new Date(specificEndDate).toLocaleDateString(
-    "en-GB",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    }
-  );
-
-  const cinemaId = location._id;
-
-  async function deleteEvent() {
+  async function fetchComments() {
+    console.log("Fetching comments for event ID:", eventId);
     try {
-      const token = localStorage.getItem("token");
-      await axios.delete(
-        `http://localhost:8000/api/cinemas/${cinemaId}/events/${eventId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+      const resp = await fetch(
+        `http://localhost:8000/api/events/${eventId}/comments`
       );
-      navigate(`/cinemas/${cinemaId}`);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log("The error is:", error);
+      if (!resp.ok) {
+        console.error("Error fetching comments:", resp.status);
+        throw new Error(`HTTP error! status: ${resp.status}`);
+      }
+
+      const { eventComments } = await resp.json();
+      console.log("Comments received:", eventComments);
+      setComments(eventComments);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
-    <div
-      id="event-details"
-      className="card has-background-danger-dark has-text-white-ter"
-    >
-      <header className="card-header">
-        <p className="card-header-title">
-          {title} @ {location.name}
-        </p>
-      </header>
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img src={image} alt={`An image for ${title}`} />
-        </figure>
-      </div>
-      <div className="card-content">
-        <div className="content">
-          <p>{description}</p>
+    <section className="section">
+      <div className="container mt-5">
+        <div className="columns is-multiline is-centered">
+          {isLoading ? (
+            <FullPageLoader />
+          ) : (
+            <>
+              {event && (
+                <div className="column is-half">
+                  <EventDetails
+                    {...event}
+                    user={user?._id || null}
+                    eventId={eventId || ""}
+                  />
+                </div>
+              )}
 
-          <p>
-            Notice posted by <strong>{author.username}</strong>
-          </p>
-          {!recurringDate && (
-            <p>
-              Running from: {formattedStartDate} to {formattedEndDate}
-            </p>
+              <div className="column is-half">
+                <p className="has-text-centered subtitle mb-5">
+                  Discussion board for {event?.title}
+                </p>
+
+                {user ? (
+                  <CommentBox
+                    eventId={eventId || ""}
+                    fetchComments={fetchComments}
+                  />
+                ) : (
+                  <p className="has-text-centered subtitle">
+                    <Link to="/login">Login</Link> to post a comment
+                  </p>
+                )}
+
+                {comments.length > 0 ? (
+                  <div id="events-thread">
+                    {comments.map((comment) => (
+                      <CommentsThread
+                        {...comment}
+                        key={comment._id}
+                        user={user?._id || null}
+                        eventAuthor={event?.author._id || ""}
+                        fetchComments={fetchComments}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="has-text-centered subtitle">
+                    No comments have been posted for {event?.title}.
+                  </p>
+                )}
+              </div>
+            </>
           )}
-          {recurringDate && (
-            <p>
-              <strong>When?</strong> {recurringDate}
-            </p>
-          )}
-          <p>
-            Discover more about {title}{" "}
-            <a href={eventLink} target="_blank" rel="noopener noreferrer">
-              here.
-            </a>
-          </p>
         </div>
       </div>
-      {(user === author._id || user === location.owner) && (
-        <div className="columns is-centered">
-          <div className="column is-narrow">
-            <button
-              onClick={deleteEvent}
-              className="button has-background-danger-20"
-            >
-              Remove Event
-            </button>
-          </div>
-          <div className="column is-narrow">
-            <Link to={`/events/${eventId}/update-event`}>
-              <button className="button is-link">Update Event</button>
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
+    </section>
   );
 }
 

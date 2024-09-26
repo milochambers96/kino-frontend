@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import CinemaForm from "../Forms/CinemaForm";
+import CinemaForm from "../Forms & Utility Components/CinemaForm";
 
 function UpdateCinema() {
   const { cinemaId } = useParams();

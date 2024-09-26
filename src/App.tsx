@@ -12,8 +12,8 @@ import PostCinema from "./components/Post&DisplayCinemas/PostCinema";
 import PostEvent from "./components/CinemaNotice/PostEvent";
 import UpdateCinema from "./components/CinemaNotice/UpdateCinema";
 import UpdateEvent from "./components/EventNotice/UpdateEvent";
-import ShowCinema from "./components/CinemaNotice/ShowCinema";
-import ShowEvent from "./components/EventNotice/ShowEvent";
+import CinemaNoticeBoard from "./components/CinemaNotice/CinemaNoticeBoard";
+import EventNoticeBoard from "./components/EventNotice/EventNoticeBoard";
 import { IUser } from "./interfaces/user";
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
@@ -64,8 +64,14 @@ function App() {
 
         {/*Routes from Cinema Notice Board */}
         <Route path="/edit-cinema/:cinemaId" element={<UpdateCinema />} />
-        <Route path="/cinemas/:cinemaId" element={<ShowCinema user={user} />} />
-        <Route path="/events/:eventId" element={<ShowEvent user={user} />} />
+        <Route
+          path="/cinemas/:cinemaId"
+          element={<CinemaNoticeBoard user={user} />}
+        />
+        <Route
+          path="/events/:eventId"
+          element={<EventNoticeBoard user={user} />}
+        />
         <Route path="/cinemas/:cinemaId/post-event" element={<PostEvent />} />
         <Route path="/events/:eventId/update-event" element={<UpdateEvent />} />
       </Routes>

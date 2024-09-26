@@ -1,101 +1,81 @@
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { IUser } from "../../interfaces/user";
 import { ICinema } from "../../interfaces/cinema";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { IEvent } from "../../interfaces/event";
+import CinemaDetails from "./CinemaDetails";
+import EventsThread from "./EventsThread";
+import FullPageLoader from "../Forms & Utility Components/FullPageLoader";
 
-interface NoticeBoardProps extends ICinema {
-  user: string | null;
-  cinemaId: string;
-}
+function CinemaNoticeBoard({ user }: { user: null | IUser }) {
+  const [cinema, setCinema] = useState<ICinema | null>(null);
+  const [events, setEvents] = useState<IEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-function CinemaNoticeBoard({
-  name,
-  image,
-  address,
-  bio,
-  yearEst,
-  screens,
-  capacity,
-  website,
-  owner,
-  user,
-  cinemaId,
-}: NoticeBoardProps) {
-  const navigate = useNavigate();
+  const { cinemaId } = useParams();
 
-  async function deleteCinema() {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8000/api/cinemas/${cinemaId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      navigate("/cinemas");
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log("The error is:", error);
+  useEffect(() => {
+    async function fetchCinema() {
+      const resp = await fetch(`http://localhost:8000/api/cinemas/${cinemaId}`);
+      const cinemaData = await resp.json();
+      setCinema(cinemaData);
     }
-  }
+    async function fetchEvents() {
+      const resp = await fetch(
+        `http://localhost:8000/api/cinemas/${cinemaId}/events`
+      );
+      const { cinemaEvents } = await resp.json();
+      setEvents(cinemaEvents);
+      setIsLoading(false);
+    }
+    fetchCinema();
+    fetchEvents();
+  }, [cinemaId]);
 
   return (
-    <div
-      id="cinema-details"
-      className="card has-background-danger-dark has-text-white-ter"
-    >
-      <header className="card-header">
-        <p className="card-header-title">{name}</p>
-      </header>
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img src={image} alt={`An image of ${name}`} />
-        </figure>
-      </div>
-      <div className="card-content">
-        <div className="content">
-          <p>
-            <strong>Address:</strong> {address}
-          </p>
-          {yearEst && (
-            <p>
-              <strong>Year Established:</strong> {yearEst}
-            </p>
+    <section className="section">
+      <div className="container mt-5">
+        <div className="columns is-multiline is-centered">
+          {isLoading ? (
+            <FullPageLoader />
+          ) : (
+            <>
+              {cinema && (
+                <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
+                  <CinemaDetails
+                    {...cinema}
+                    user={user?._id || null}
+                    cinemaId={cinemaId || ""}
+                  />
+                </div>
+              )}
+
+              <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile">
+                {events.length > 0 ? (
+                  <div id="events-thread">
+                    <div className="is-flex is-justify-content-space-between is-align-items-center mb-5">
+                      <p className="subtitle mt-3">
+                        Events hosted at {cinema?.name}
+                      </p>
+                      <Link to={`/cinemas/${cinemaId}/post-event`}>
+                        <button className="button is-link">Add a post</button>
+                      </Link>
+                    </div>
+                    {events.map((event) => (
+                      <EventsThread {...event} key={event._id} />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="has-text-centered">
+                    No events have been posted at {cinema?.name}.
+                  </p>
+                )}
+              </div>
+            </>
           )}
-          {screens && (
-            <p>
-              <strong>Screens:</strong> {screens}
-            </p>
-          )}
-          {capacity && (
-            <p>
-              <strong>Capacity:</strong> {capacity}
-            </p>
-          )}
-          <p>{bio}</p>
-          <p>
-            Discover more about {name}{" "}
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              here.
-            </a>
-          </p>
         </div>
       </div>
-      {owner === user && (
-        <div className="columns is-centered">
-          <div className="column is-narrow">
-            <button
-              onClick={deleteCinema}
-              className="button has-background-danger-20 "
-            >
-              Remove Cinema
-            </button>
-          </div>
-          <div className="column is-narrow">
-            <Link to={`/edit-cinema/${cinemaId}`}>
-              <button className="button  is-link">Update Cinema</button>
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
+    </section>
   );
 }
 

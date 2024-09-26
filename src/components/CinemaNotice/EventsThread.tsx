@@ -15,11 +15,6 @@ function EventsThread({
     year: "numeric",
   });
 
-  //   const formattedTime = new Date(createdAt).toLocaleTimeString("en-GB", {
-  //     hour: "2-digit",
-  //     minute: "2-digit",
-  //   });
-
   return (
     <article className="media ml-5 box">
       <figure className="media-left">

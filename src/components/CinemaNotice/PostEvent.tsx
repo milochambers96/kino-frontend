@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import EventForm from "../Forms/EventForm";
+import EventForm from "../Forms & Utility Components/EventForm";
 
 function PostEvent() {
   const [formErrorData, setFormErrorData] = useState({});
