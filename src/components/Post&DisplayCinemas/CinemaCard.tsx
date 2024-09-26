@@ -10,8 +10,12 @@ function CinemaCard({ _id, name, image, area, borough }: ICinema) {
             <div className="card-header-title">{name}</div>
           </div>
           <div className="card-image">
-            <figure className="image image-is1by1">
-              <img src={image} alt={`An image of ${name}`} />
+            <figure className="image fixed-image-container">
+              <img
+                src={image}
+                alt={`An image of ${name}`}
+                className="fixed-image"
+              />
             </figure>
           </div>
           <div className="card-content has-text-centered">

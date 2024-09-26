@@ -1,9 +1,7 @@
 const FullPageLoader = () => (
   <div className="fullscreen-loader">
     <div className="loader-content">
-      <button className="button is-loading is-large is-primary">
-        Loading...
-      </button>
+      <button className="button is-loading is-large is-link">Loading...</button>
     </div>
   </div>
 );

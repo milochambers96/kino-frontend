@@ -6,8 +6,10 @@ function Home() {
         style={{ height: "100vh" }}
       >
         <div className="kino-content has-text-centered kino-title">
-          <p className="title">Kino Connect</p>
-          <p className="subtitle">Independent Cinema, Together.</p>
+          <p className="title has-text-white-ter">Kino Connect</p>
+          <p className="subtitle has-text-white-ter mt-2">
+            Independent Cinema, Together.
+          </p>
         </div>
       </div>
     </section>

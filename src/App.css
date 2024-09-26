@@ -1,11 +1,13 @@
 @import url("https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css");
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 body {
   margin: 0;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  font-family: "Anton", sans-serif;
 }
 
 .kino-background {
@@ -14,8 +16,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
+  height: 100vh;
+  width: 100vw;
 }
 
 .kino-form-wrapper {
@@ -25,9 +27,9 @@ body {
 }
 
 .kino-form {
-  max-height: 80vh; /* Adjust this value if needed */
-  overflow-y: auto; /* Enable vertical scrolling */
-  background-color: rgba(6, 6, 6, 0.8); /* Semi-transparent background */
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: rgba(6, 6, 6, 0.8);
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -40,12 +42,12 @@ body {
 }
 
 .kino-event-thread-header {
-  background-color: rgba(6, 6, 6, 0.9); /* Semi-transparent background */
+  background-color: rgba(6, 6, 6, 0.7);
   padding: 10px;
   border-radius: 12px;
   margin-bottom: 1rem;
-  display: flex; /* Use Flexbox */
-  justify-content: space-between; /* Space between the items */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
@@ -56,25 +58,58 @@ body {
   padding: 1rem;
 }
 
-/* .kino-notice-board {
-  background-color: rgba(6, 6, 6, 0.498);
-  border-radius: 12px;
-} */
-
 .kino-grey {
-  background-color: rgba(6, 6, 6, 0.9); /* Semi-transparent background */
+  background-color: rgba(6, 6, 6, 0.9);
+}
+
+.fixed-image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.fixed-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.map-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.5rem;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  border-radius: 12px;
 }
 
 .map-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  width: 100vw;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center; /* Center aligns the title and select vertically */
+  margin-bottom: 20px; /* Space below the filter */
+}
+
+.filter-label {
+  margin-right: 10px; /* Space between the title and select */
 }
 
 #map {
   width: 75%;
   height: 75vh;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .fullscreen-loader {

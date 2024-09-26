@@ -73,7 +73,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                           <EventsThread {...event} key={event._id} />
                         ))
                       ) : (
-                        <p className="has-text-centered">
+                        <p className="has-text-centered kino-event-thread-header">
                           No events have been posted at {cinema?.name}.
                         </p>
                       )}
