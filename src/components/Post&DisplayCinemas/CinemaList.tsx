@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ICinema } from "../../interfaces/cinema";
 import FullPageLoader from "../Forms & Utility Components/FullPageLoader";
 import CinemaCard from "./CinemaCard";
+import { baseUrl } from "../../config";
 
 type Cinemas = null | Array<ICinema>;
 
@@ -11,7 +12,7 @@ function CinemaList() {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   async function getCinemaData() {
-    const resp = await fetch("/api/cinemas");
+    const resp = await fetch(`${baseUrl}/cinemas`);
     const cinemaData = await resp.json();
     setCinemas(cinemaData);
     setIsLoading(false);

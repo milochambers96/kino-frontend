@@ -1,6 +1,7 @@
 import { ICinema } from "../../interfaces/cinema";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { baseUrl } from "../../config";
 
 interface CinemaDetailsProps extends ICinema {
   user: string | null;
@@ -25,7 +26,7 @@ function CinemaDetails({
   async function deleteCinema() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`/api/cinemas/${cinemaId}`, {
+      await axios.delete(`${baseUrl}/cinemas/${cinemaId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/cinemas");

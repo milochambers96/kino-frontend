@@ -1,6 +1,7 @@
 import { IComment } from "../../interfaces/comment";
 import axios from "axios";
 import { useState } from "react";
+import { baseUrl } from "../../config";
 
 interface CommentsThreadProps extends IComment {
   user: string | null;
@@ -37,12 +38,9 @@ function CommentsThread({
   async function deleteComment() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(
-        `/api/events/${eventId}/comments/${commentId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`${baseUrl}/events/${eventId}/comments/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       fetchComments();
     } catch (error: unknown) {
       console.log("The error is: ", error);
@@ -54,7 +52,7 @@ function CommentsThread({
       console.log("Attempting to update comment:", editedComment);
       const token = localStorage.getItem("token");
       await axios.put(
-        `/api/events/${eventId}/comments/${commentId}`,
+        `${baseUrl}/events/${eventId}/comments/${commentId}`,
         {
           content: editedComment,
         },

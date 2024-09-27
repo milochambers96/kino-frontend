@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { baseUrl } from "../config";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function Login({ fetchUser }: { fetchUser: Function }) {
@@ -30,7 +31,7 @@ function Login({ fetchUser }: { fetchUser: Function }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", formData);
+      const response = await axios.post(`${baseUrl}/login`, formData);
       localStorage.setItem("token", response.data.token);
       fetchUser();
       navigate("/");

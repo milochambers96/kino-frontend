@@ -1,5 +1,6 @@
 import React, { useState, SyntheticEvent } from "react";
 import axios from "axios";
+import { baseUrl } from "../../config";
 
 interface CommentBoxProps {
   eventId: string;
@@ -26,7 +27,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
       const token = localStorage.getItem("token");
       const content = comment;
       await axios.post(
-        `/api/events/${eventId}/comments`,
+        `${baseUrl}/events/${eventId}/comments`,
         {
           content,
           event: eventId,

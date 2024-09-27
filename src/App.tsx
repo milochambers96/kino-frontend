@@ -15,6 +15,7 @@ import UpdateEvent from "./components/EventNotice/UpdateEvent";
 import CinemaNoticeBoard from "./components/CinemaNotice/CinemaNoticeBoard";
 import EventNoticeBoard from "./components/EventNotice/EventNoticeBoard";
 import { IUser } from "./interfaces/user";
+import { baseUrl } from "./config";
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [isCinemaOwner, setIsCinemaOwner] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   async function fetchUser() {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("/api/user", {
+      const response = await axios.get(`${baseUrl}/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);

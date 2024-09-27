@@ -1,6 +1,7 @@
 import { IEvent } from "../../interfaces/event";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { baseUrl } from "../../config";
 
 interface EventDetailsProps extends IEvent {
   user: string | null;
@@ -43,12 +44,12 @@ function EventDetails({
   async function deleteEvent() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`/api/cinemas/${cinemaId}/events/${eventId}`, {
+      await axios.delete(`${baseUrl}/cinemas/${cinemaId}/events/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate(`/cinemas/${cinemaId}`);
     } catch (error: unknown) {
-      console.log("The follow error occured when deleting an event:", error);
+      console.error("The follow error occured when deleting an event:", error);
     }
   }
 

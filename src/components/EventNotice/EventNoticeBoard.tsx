@@ -7,6 +7,7 @@ import EventDetails from "./EventDetails";
 import CommentsThread from "./CommentsThread";
 import CommentBox from "./CommentBox";
 import FullPageLoader from "../Forms & Utility Components/FullPageLoader";
+import { baseUrl } from "../../config";
 
 function EventNoticeBoard({ user }: { user: null | IUser }) {
   const [event, setEvent] = useState<IEvent | null>(null);
@@ -18,7 +19,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   const fetchComments = useCallback(async () => {
     console.log("Fetching comments for event ID:", eventId);
     try {
-      const resp = await fetch(`/api/events/${eventId}/comments`);
+      const resp = await fetch(`${baseUrl}/events/${eventId}/comments`);
 
       if (!resp.ok) {
         console.error("Error fetching comments:", resp.status);
@@ -38,7 +39,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   useEffect(() => {
     async function fetchEvent() {
       console.log("Fetching event with ID:", eventId);
-      const resp = await fetch(`/api/events/${eventId}`);
+      const resp = await fetch(`${baseUrl}/events/${eventId}`);
 
       if (!resp.ok) {
         console.error("Error fetching event:", resp.status);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CinemaForm from "../Forms & Utility Components/CinemaForm";
+import { baseUrl } from "../../config";
 
 function PostCinema() {
   const [formErrorData, setFormErrorData] = useState({});
@@ -11,7 +12,7 @@ function PostCinema() {
   async function handleSubmit(completeCinemaData: any) {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("/api/cinemas", completeCinemaData, {
+      await axios.post(`${baseUrl}/cinemas`, completeCinemaData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/cinemas");

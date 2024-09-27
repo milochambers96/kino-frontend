@@ -2,21 +2,22 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import { forwardGeocode } from "./GeocodeAddress";
+import { baseUrl } from "../../config";
 
 const CinemaMap: React.FC = () => {
   const [selectedArea, setSelectedArea] = useState<string>("All");
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
-  const markersRef = useRef<mapboxgl.Marker[]>([]); // Use a ref to store markers
+  const markersRef = useRef<mapboxgl.Marker[]>([]); 
 
   const fetchAndMapCinemas = useCallback(async () => {
     if (!map) return;
 
-    // Clear existing markers
+    
     markersRef.current.forEach((marker) => marker.remove());
-    markersRef.current = []; // Reset the markers reference
+    markersRef.current = []; 
 
     try {
-      const response = await axios.get("/api/cinemas");
+      const response = await axios.get(`${baseUrl}/cinemas`);
       const cinemas = response.data;
       for (const cinema of cinemas) {
         if (selectedArea === "All" || cinema.area === selectedArea) {
@@ -32,7 +33,7 @@ const CinemaMap: React.FC = () => {
                 )
               )
               .addTo(map);
-            markersRef.current.push(marker); // Store the marker in the ref
+            markersRef.current.push(marker); 
           } catch (error) {
             console.error(`Error geocoding address for ${cinema.name}:`, error);
           }

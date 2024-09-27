@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { baseUrl } from "../config";
 
 function Signup() {
   const [signupFormData, setSignupFormData] = useState({
@@ -32,7 +33,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      await axios.post("/api/signup", signupFormData);
+      await axios.post(`${baseUrl}/signup`, signupFormData);
       navigate("/login");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

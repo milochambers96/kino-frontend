@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CinemaForm from "../Forms & Utility Components/CinemaForm";
+import { baseUrl } from "../../config";
 
 function UpdateCinema() {
   const { cinemaId } = useParams();
@@ -11,7 +12,7 @@ function UpdateCinema() {
 
   useEffect(() => {
     async function fetchCinema() {
-      const response = await axios.get(`/api/cinemas/${cinemaId}`);
+      const response = await axios.get(`${baseUrl}/cinemas/${cinemaId}`);
       setInitialData(response.data);
     }
 
@@ -22,7 +23,7 @@ function UpdateCinema() {
   async function handleSubmit(completeCinemaData: any) {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`/api/cinemas/${cinemaId}`, completeCinemaData, {
+      await axios.put(`${baseUrl}/cinemas/${cinemaId}`, completeCinemaData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate(`/cinemas/${cinemaId}`);

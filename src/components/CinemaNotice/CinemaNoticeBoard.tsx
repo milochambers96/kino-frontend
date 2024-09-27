@@ -6,6 +6,7 @@ import { IEvent } from "../../interfaces/event";
 import CinemaDetails from "./CinemaDetails";
 import EventsThread from "./EventsThread";
 import FullPageLoader from "../Forms & Utility Components/FullPageLoader";
+import { baseUrl } from "../../config";
 
 function CinemaNoticeBoard({ user }: { user: null | IUser }) {
   const [cinema, setCinema] = useState<ICinema | null>(null);
@@ -16,12 +17,12 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
 
   useEffect(() => {
     async function fetchCinema() {
-      const resp = await fetch(`/api/cinemas/${cinemaId}`);
+      const resp = await fetch(`${baseUrl}/cinemas/${cinemaId}`);
       const cinemaData = await resp.json();
       setCinema(cinemaData);
     }
     async function fetchEvents() {
-      const resp = await fetch(`/api/cinemas/${cinemaId}/events`);
+      const resp = await fetch(`${baseUrl}/cinemas/${cinemaId}/events`);
       const { cinemaEvents } = await resp.json();
       setEvents(cinemaEvents);
       setIsLoading(false);
