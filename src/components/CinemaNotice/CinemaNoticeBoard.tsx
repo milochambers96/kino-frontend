@@ -53,7 +53,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                 <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile kino-scroll">
                   <div id="events-thread">
                     <div className="kino-event-thread-header">
-                      <p className="subtitle mt-3">
+                      <p className="subtitle has-text-white-ter ml-3 mt-3">
                         Events hosted at {cinema?.name}
                       </p>
                       {user ? (
