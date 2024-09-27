@@ -68,7 +68,7 @@ function CommentsThread({
   }
 
   return (
-    <article className="media ml-5 box kino-grey">
+    <article className="media ml-5 box kino-grey has-text-white-ter">
       <div className="media-content">
         <div className="content">
           <p>

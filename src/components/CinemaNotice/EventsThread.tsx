@@ -30,10 +30,8 @@ function EventsThread({
               {" "}
               posted by {author.username} on {formattedDate}
             </small>
-            <br />
-            {description}
-            <br />
-            <button className="button is-small mt-3">
+            <p className="has-text-white-ter mt-2">{description}</p>
+            <button className="button is-small mt-2">
               <Link to={`/events/${_id}`}>Find out more</Link>
             </button>
           </p>

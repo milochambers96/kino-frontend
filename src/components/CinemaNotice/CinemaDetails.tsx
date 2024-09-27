@@ -31,7 +31,7 @@ function CinemaDetails({
       });
       navigate("/cinemas");
     } catch (error: unknown) {
-      console.log("The error is:", error);
+      console.error("The error is:", error);
     }
   }
 
