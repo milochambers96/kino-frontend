@@ -30,10 +30,7 @@ function Login({ fetchUser }: { fetchUser: Function }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/login",
-        formData
-      );
+      const response = await axios.post("/api/login", formData);
       localStorage.setItem("token", response.data.token);
       fetchUser();
       navigate("/");

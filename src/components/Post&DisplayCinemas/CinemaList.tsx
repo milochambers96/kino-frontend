@@ -8,9 +8,10 @@ type Cinemas = null | Array<ICinema>;
 function CinemaList() {
   const [cinemas, setCinemas] = useState<Cinemas>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   async function getCinemaData() {
-    const resp = await fetch("http://localhost:8000/api/cinemas");
+    const resp = await fetch("/api/cinemas");
     const cinemaData = await resp.json();
     setCinemas(cinemaData);
     setIsLoading(false);
@@ -20,14 +21,33 @@ function CinemaList() {
     getCinemaData();
   }, []);
 
+  const filteredCinemas = cinemas?.filter((cinema) =>
+    cinema.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <section className="section kino-background">
       {isLoading ? (
         <FullPageLoader />
       ) : (
         <div className="container mt-5 kino-scroll">
+          <div className="columns is-centered">
+            <div className="column is-one-third">
+              <div className="field">
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Search by cinema name"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="columns is-multiline">
-            {cinemas?.map((cinema) => (
+            {filteredCinemas?.map((cinema) => (
               <CinemaCard {...cinema} key={cinema._id} />
             ))}
           </div>

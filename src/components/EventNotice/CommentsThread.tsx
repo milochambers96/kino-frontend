@@ -38,7 +38,7 @@ function CommentsThread({
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:8000/api/events/${eventId}/comments/${commentId}`,
+        `/api/events/${eventId}/comments/${commentId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -54,7 +54,7 @@ function CommentsThread({
       console.log("Attempting to update comment:", editedComment);
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:8000/api/events/${eventId}/comments/${commentId}`,
+        `/api/events/${eventId}/comments/${commentId}`,
         {
           content: editedComment,
         },

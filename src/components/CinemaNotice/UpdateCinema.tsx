@@ -11,9 +11,7 @@ function UpdateCinema() {
 
   useEffect(() => {
     async function fetchCinema() {
-      const response = await axios.get(
-        `http://localhost:8000/api/cinemas/${cinemaId}`
-      );
+      const response = await axios.get(`/api/cinemas/${cinemaId}`);
       setInitialData(response.data);
     }
 
@@ -24,11 +22,9 @@ function UpdateCinema() {
   async function handleSubmit(completeCinemaData: any) {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(
-        `http://localhost:8000/api/cinemas/${cinemaId}`,
-        completeCinemaData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.put(`/api/cinemas/${cinemaId}`, completeCinemaData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       navigate(`/cinemas/${cinemaId}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

@@ -32,7 +32,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8000/api/signup", signupFormData);
+      await axios.post("/api/signup", signupFormData);
       navigate("/login");
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

@@ -18,9 +18,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   const fetchComments = useCallback(async () => {
     console.log("Fetching comments for event ID:", eventId);
     try {
-      const resp = await fetch(
-        `http://localhost:8000/api/events/${eventId}/comments`
-      );
+      const resp = await fetch(`/api/events/${eventId}/comments`);
 
       if (!resp.ok) {
         console.error("Error fetching comments:", resp.status);
@@ -40,7 +38,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   useEffect(() => {
     async function fetchEvent() {
       console.log("Fetching event with ID:", eventId);
-      const resp = await fetch(`http://localhost:8000/api/events/${eventId}`);
+      const resp = await fetch(`/api/events/${eventId}`);
 
       if (!resp.ok) {
         console.error("Error fetching event:", resp.status);
@@ -80,8 +78,11 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                     fetchComments={fetchComments}
                   />
                 ) : (
-                  <p className="has-text-centered subtitle">
-                    <Link to="/login">Login</Link> to post a comment
+                  <p className="subtitle kino-grey kino-comment has-text-white-ter">
+                    <span>
+                      <Link to="/login">Login </Link>
+                    </span>
+                    to post a comment
                   </p>
                 )}
 
@@ -98,7 +99,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                     ))}
                   </div>
                 ) : (
-                  <p className="has-text-centered subtitle">
+                  <p className="subtitle kino-grey kino-comment has-text-white-ter">
                     No comments have been posted for {event?.title}.
                   </p>
                 )}

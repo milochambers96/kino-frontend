@@ -16,7 +16,7 @@ const CinemaMap: React.FC = () => {
     markersRef.current = []; // Reset the markers reference
 
     try {
-      const response = await axios.get("http://localhost:8000/api/cinemas");
+      const response = await axios.get("/api/cinemas");
       const cinemas = response.data;
       for (const cinema of cinemas) {
         if (selectedArea === "All" || cinema.area === selectedArea) {

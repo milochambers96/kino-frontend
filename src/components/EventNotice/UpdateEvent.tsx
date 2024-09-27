@@ -14,7 +14,7 @@ function UpdateEvent() {
   useEffect(() => {
     async function fetchEvent() {
       const response = await axios.get(
-        `http://localhost:8000/api/events/${eventId}`
+        `/events/${eventId}`
       );
       setInitialData(response.data);
     }

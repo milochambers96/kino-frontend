@@ -59,7 +59,15 @@ body {
 }
 
 .kino-grey {
-  background-color: rgba(6, 6, 6, 0.9);
+  background-color: rgba(6, 6, 6, 0.75);
+}
+
+.kino-comment {
+  border-radius: 12px;
+  background-color: rgba(6, 6, 6, 0.7);
+  padding: 1rem;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .fixed-image-container {
@@ -97,12 +105,12 @@ body {
 
 .filter-container {
   display: flex;
-  align-items: center; /* Center aligns the title and select vertically */
-  margin-bottom: 20px; /* Space below the filter */
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .filter-label {
-  margin-right: 10px; /* Space between the title and select */
+  margin-right: 10px;
 }
 
 #map {

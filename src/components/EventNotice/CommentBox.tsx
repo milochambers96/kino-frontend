@@ -26,7 +26,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
       const token = localStorage.getItem("token");
       const content = comment;
       await axios.post(
-        `http://localhost:8000/api/events/${eventId}/comments`,
+        `/api/events/${eventId}/comments`,
         {
           content,
           event: eventId,

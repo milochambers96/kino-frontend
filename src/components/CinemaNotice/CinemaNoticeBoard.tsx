@@ -16,14 +16,12 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
 
   useEffect(() => {
     async function fetchCinema() {
-      const resp = await fetch(`http://localhost:8000/api/cinemas/${cinemaId}`);
+      const resp = await fetch(`/api/cinemas/${cinemaId}`);
       const cinemaData = await resp.json();
       setCinema(cinemaData);
     }
     async function fetchEvents() {
-      const resp = await fetch(
-        `http://localhost:8000/api/cinemas/${cinemaId}/events`
-      );
+      const resp = await fetch(`/api/cinemas/${cinemaId}/events`);
       const { cinemaEvents } = await resp.json();
       setEvents(cinemaEvents);
       setIsLoading(false);

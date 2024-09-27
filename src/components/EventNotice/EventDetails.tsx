@@ -43,12 +43,9 @@ function EventDetails({
   async function deleteEvent() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(
-        `http://localhost:8000/api/cinemas/${cinemaId}/events/${eventId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`/api/cinemas/${cinemaId}/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       navigate(`/cinemas/${cinemaId}`);
     } catch (error: unknown) {
       console.log("The follow error occured when deleting an event:", error);

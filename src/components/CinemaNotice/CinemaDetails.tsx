@@ -25,7 +25,7 @@ function CinemaDetails({
   async function deleteCinema() {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8000/api/cinemas/${cinemaId}`, {
+      await axios.delete(`/api/cinemas/${cinemaId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/cinemas");

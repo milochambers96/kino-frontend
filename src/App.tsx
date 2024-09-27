@@ -22,11 +22,9 @@ function App() {
   async function fetchUser() {
     try {
       const token = localStorage.getItem("token");
-      console.log("Token is: ", token);
-      const response = await axios.get("http://localhost:8000/api/user", {
+      const response = await axios.get("/api/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("User data fetched:", response.data);
       setUser(response.data);
     } catch (error) {
       console.error(error);

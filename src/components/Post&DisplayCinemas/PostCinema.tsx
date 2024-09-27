@@ -11,11 +11,9 @@ function PostCinema() {
   async function handleSubmit(completeCinemaData: any) {
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
-        "http://localhost:8000/api/cinemas",
-        completeCinemaData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.post("/api/cinemas", completeCinemaData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       navigate("/cinemas");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

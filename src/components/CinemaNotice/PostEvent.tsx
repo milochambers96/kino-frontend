@@ -13,13 +13,9 @@ function PostEvent() {
   async function handleSubmit(completeEventData: any) {
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
-        `http://localhost:8000/api/cinemas/${cinemaId}/events`,
-        completeEventData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.post(`/api/cinemas/${cinemaId}/events`, completeEventData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       navigate(`/cinemas/${cinemaId}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
