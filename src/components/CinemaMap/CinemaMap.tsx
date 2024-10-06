@@ -7,14 +7,13 @@ import { baseUrl } from "../../config";
 const CinemaMap: React.FC = () => {
   const [selectedArea, setSelectedArea] = useState<string>("All");
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
-  const markersRef = useRef<mapboxgl.Marker[]>([]); 
+  const markersRef = useRef<mapboxgl.Marker[]>([]);
 
   const fetchAndMapCinemas = useCallback(async () => {
     if (!map) return;
 
-    
     markersRef.current.forEach((marker) => marker.remove());
-    markersRef.current = []; 
+    markersRef.current = [];
 
     try {
       const response = await axios.get(`${baseUrl}/cinemas`);
@@ -33,7 +32,7 @@ const CinemaMap: React.FC = () => {
                 )
               )
               .addTo(map);
-            markersRef.current.push(marker); 
+            markersRef.current.push(marker);
           } catch (error) {
             console.error(`Error geocoding address for ${cinema.name}:`, error);
           }
@@ -77,7 +76,7 @@ const CinemaMap: React.FC = () => {
   };
 
   return (
-    <div className="kino-background">
+    <div className="kino-gradient">
       <div className="map-flex">
         <div className="filter-container has-background-danger-dark mt-3">
           <div className="filter-label">

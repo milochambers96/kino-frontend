@@ -55,7 +55,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   }, [eventId, fetchComments]);
 
   return (
-    <section className="section kino-background">
+    <section className="section kino-gradient">
       <div className="container mt-5">
         <div className="columns is-multiline is-centered">
           {isLoading ? (

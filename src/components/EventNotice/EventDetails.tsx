@@ -57,7 +57,8 @@ function EventDetails({
     <div id="event-details" className="card kino-grey has-text-white-ter">
       <header className="card-header">
         <p className="card-header-title">
-          {title} @ <Link to={`/cinemas/${cinemaId}`}> {location.name}</Link>
+          {title} <span> @ </span>
+          <Link to={`/cinemas/${cinemaId}`}>{location.name}</Link>
         </p>
       </header>
       <div className="card-image">

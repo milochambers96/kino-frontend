@@ -32,7 +32,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
   }, [cinemaId]);
 
   return (
-    <div className="kino-background">
+    <div className="kino-gradient">
       <section className="section">
         <div className="container mt-5">
           <div className="columns is-multiline is-centered">
