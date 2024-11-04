@@ -49,7 +49,7 @@ function Signup() {
   }
 
   return (
-    <div className="kino-background">
+    <div className="kino-gradient">
       <div className="section mt-5">
         <div className="container">
           <div className="columns is-centered">

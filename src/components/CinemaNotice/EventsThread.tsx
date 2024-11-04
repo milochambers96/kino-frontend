@@ -16,12 +16,21 @@ function EventsThread({
   });
 
   return (
-    <article className="media ml-5 box kino-grey">
+    <article className="media box kino-grey is-fullwidth ml-0 mr-0">
       <figure className="media-left">
         <p className="image is-64x64">
           <img src={image} alt={`image for ${title}`} />
         </p>
+        <button
+          className="button mt-2 is-link"
+          style={{ width: "64px", textAlign: "center" }}
+        >
+          <Link to={`/events/${_id}`} style={{ fontSize: "0.65rem" }}>
+            Event details
+          </Link>
+        </button>
       </figure>
+
       <div className="media-content">
         <div className="content">
           <p>
@@ -30,10 +39,12 @@ function EventsThread({
               {" "}
               posted by {author.username} on {formattedDate}
             </small>
-            <p className="has-text-white-ter mt-2">{description}</p>
-            <button className="button is-small mt-2">
+            <p className="has-text-white-ter mt-2 has-text-justified">
+              {description}
+            </p>
+            {/* <button className="button is-small mt-2">
               <Link to={`/events/${_id}`}>Find out more</Link>
-            </button>
+            </button> */}
           </p>
         </div>
       </div>

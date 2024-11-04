@@ -11,6 +11,7 @@ import { baseUrl } from "../../config";
 function CinemaNoticeBoard({ user }: { user: null | IUser }) {
   const [cinema, setCinema] = useState<ICinema | null>(null);
   const [events, setEvents] = useState<IEvent[]>([]);
+  const [mobileTab, setMobileTab] = useState("cinema");
   const [isLoading, setIsLoading] = useState(true);
 
   const { cinemaId } = useParams();
@@ -35,13 +36,13 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
     <div className="kino-gradient">
       <section className="section">
         <div className="container mt-5">
-          <div className="columns is-multiline is-centered">
+          <div className="columns is-multiline is-centered is-hidden-mobile">
             {isLoading ? (
               <FullPageLoader />
             ) : (
               <>
                 {cinema && (
-                  <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile kino-scroll">
+                  <div className="column is-one-half-desktop is-one-half-tablet kino-scroll">
                     <CinemaDetails
                       {...cinema}
                       user={user?._id || null}
@@ -50,19 +51,29 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                   </div>
                 )}
 
-                <div className="column is-one-half-desktop is-one-half-tablet is-full-mobile kino-scroll">
+                <div className="column is-one-half-desktop is-one-half-tablet kino-scroll">
                   <div id="events-thread">
-                    <div className="kino-event-thread-header">
-                      <p className="subtitle has-text-white-ter ml-3 mt-3">
-                        Events hosted at {cinema?.name}
-                      </p>
+                    <div className="box kino-grey">
+                      <h2 className="has-text-white-ter has-text-centered is-size-5">
+                        Events at {cinema?.name}
+                      </h2>
+                      <br />
                       {user ? (
-                        <Link to={`/cinemas/${cinemaId}/post-event`}>
-                          <button className="button is-link">Add a post</button>
-                        </Link>
+                        <div className="level">
+                          <div className="level-item has-text-centered">
+                            <Link to={`/cinemas/${cinemaId}/post-event`}>
+                              <button className="button is-link">
+                                Add a post
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
                       ) : (
-                        <p>
-                          <Link to={"/login"}>Login </Link>to add a post
+                        <p className="has-text-centered">
+                          <Link to={"/login"}>
+                            <span className="has-text-link">Login</span>{" "}
+                          </Link>
+                          to post an event
                         </p>
                       )}
                     </div>
@@ -81,6 +92,76 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                 </div>
               </>
             )}
+          </div>
+          <div className="is-hidden-desktop is-hidden-tablet kino-scroll">
+            <div className="tabs is-centered">
+              <ul>
+                <li className={mobileTab === "cinema" ? "is-active" : ""}>
+                  <a onClick={() => setMobileTab("cinema")}>Cinema Bio</a>
+                </li>
+                <li className={mobileTab === "events" ? "is-active" : ""}>
+                  <a onClick={() => setMobileTab("events")}>Events Thread</a>
+                </li>
+              </ul>
+            </div>
+            <div className="columns is-multiline is-centered">
+              {isLoading ? (
+                <FullPageLoader />
+              ) : (
+                <>
+                  {cinema && mobileTab === "cinema" && (
+                    <div className="column is-full-mobile ">
+                      <CinemaDetails
+                        {...cinema}
+                        user={user?._id || null}
+                        cinemaId={cinemaId || ""}
+                      />
+                    </div>
+                  )}
+                  {events && mobileTab === "events" && (
+                    <div className="column is-full-mobile kino-scroll">
+                      <div id="events-thread">
+                        <div className="box kino-grey">
+                          <h2 className="has-text-white-ter has-text-centered is-size-5">
+                            Events at {cinema?.name}
+                          </h2>
+                          <br />
+                          {user ? (
+                            <div className="level">
+                              <div className="level-item has-text-centered">
+                                <Link to={`/cinemas/${cinemaId}/post-event`}>
+                                  <button className="button is-link">
+                                    Add a post
+                                  </button>
+                                </Link>
+                              </div>
+                            </div>
+                          ) : (
+                            <p className="has-text-centered">
+                              <Link to={"/login"}>
+                                <span className="has-text-link">Login</span>{" "}
+                              </Link>
+                              to post an event
+                            </p>
+                          )}
+                        </div>
+                        <div>
+                          {events.length > 0 ? (
+                            events.map((event) => (
+                              <EventsThread {...event} key={event._id} />
+                            ))
+                          ) : (
+                            <p className="has-text-justified kino-event-thread-header">
+                              No events currently posted at {cinema?.name}.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>

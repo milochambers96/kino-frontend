@@ -377,7 +377,7 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        scroll: "scroll 40s linear infinite",
+        scroll: "scroll 15s linear infinite",
       },
       keyframes: {
         scroll: {
@@ -661,4 +661,4 @@ function CinemaMap() {
 
 ## Deployment
 
-The application is deployed at [Kino Connect](https://kino-connect.netlify.app/cinemas)
+The application is deployed at [Kino Connect](https://kino-connect.netlify.app/)
