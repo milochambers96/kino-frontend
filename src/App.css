@@ -102,6 +102,11 @@ body {
   background-color: rgba(6, 6, 6, 0.68);
 }
 
+.card-header-title,
+.card-header-title Link {
+  display: inline;
+}
+
 .kino-comment {
   border-radius: 12px;
   background-color: rgba(6, 6, 6, 0.7);

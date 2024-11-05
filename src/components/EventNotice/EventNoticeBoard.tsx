@@ -12,6 +12,8 @@ import { baseUrl } from "../../config";
 function EventNoticeBoard({ user }: { user: null | IUser }) {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [comments, setComments] = useState<IComment[]>([]);
+  const [mobileTab, setMobileTab] = useState("event");
+
   const [isLoading, setIsLoading] = useState(true);
 
   const { eventId } = useParams();
@@ -57,13 +59,13 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   return (
     <section className="section kino-gradient">
       <div className="container mt-5">
-        <div className="columns is-multiline is-centered">
+        <div className="columns is-multiline is-centered is-hidden-mobile">
           {isLoading ? (
             <FullPageLoader />
           ) : (
             <>
               {event && (
-                <div className="column is-half kino-scroll">
+                <div className="column is-one-half-desktop is-one-half-tablet kino-scroll">
                   <EventDetails
                     {...event}
                     user={user?._id || null}
@@ -72,7 +74,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                 </div>
               )}
 
-              <div className="column is-half kino-scroll">
+              <div className="column is-one-half-desktop is-one-half-tablet kino-scroll">
                 {user ? (
                   <CommentBox
                     eventId={eventId || ""}
@@ -105,6 +107,68 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                   </p>
                 )}
               </div>
+            </>
+          )}
+        </div>
+        <div className="is-hidden-desktop is-hidden-tablet kino-scroll">
+          <div className="tabs is-centered">
+            <ul>
+              <li className={mobileTab === "event" ? "is-active" : ""}>
+                <a onClick={() => setMobileTab("event")}>Event Details</a>
+              </li>
+              <li className={mobileTab === "comments" ? "is-active" : ""}>
+                <a onClick={() => setMobileTab("comments")}>Comments</a>
+              </li>
+            </ul>
+          </div>
+          {isLoading ? (
+            <FullPageLoader />
+          ) : (
+            <>
+              {event && mobileTab === "event" && (
+                <div className="column">
+                  <EventDetails
+                    {...event}
+                    user={user?._id || null}
+                    eventId={eventId || ""}
+                  />
+                </div>
+              )}
+              {comments && mobileTab === "comments" && (
+                <div className="column">
+                  {user ? (
+                    <CommentBox
+                      eventId={eventId || ""}
+                      fetchComments={fetchComments}
+                    />
+                  ) : (
+                    <p className="subtitle kino-grey kino-comment has-text-white-ter">
+                      <span>
+                        <Link to="/login">Login </Link>
+                      </span>
+                      to post a comment
+                    </p>
+                  )}
+
+                  {comments.length > 0 ? (
+                    <div id="events-thread">
+                      {comments.map((comment) => (
+                        <CommentsThread
+                          {...comment}
+                          key={comment._id}
+                          user={user?._id || null}
+                          eventAuthor={event?.author._id || ""}
+                          fetchComments={fetchComments}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="subtitle kino-grey kino-comment has-text-white-ter">
+                      No comments have been posted for {event?.title}.
+                    </p>
+                  )}
+                </div>
+              )}
             </>
           )}
         </div>

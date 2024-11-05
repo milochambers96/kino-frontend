@@ -22,11 +22,11 @@ function EventsThread({
           <img src={image} alt={`image for ${title}`} />
         </p>
         <button
-          className="button mt-2 is-link"
+          className="button mt-6 is-link"
           style={{ width: "64px", textAlign: "center" }}
         >
-          <Link to={`/events/${_id}`} style={{ fontSize: "0.65rem" }}>
-            Event details
+          <Link to={`/events/${_id}`} style={{ fontSize: "0.85rem" }}>
+            Details
           </Link>
         </button>
       </figure>

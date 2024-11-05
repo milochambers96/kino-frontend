@@ -44,9 +44,11 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
   }
 
   return (
-    <section className="section">
-      <div className="container box">
-        <h2 className="subtitle is-5">Add a Comment</h2>
+    <article className="media box kino-grey">
+      <div className="media-content">
+        <h2 className="subtitle is-6 has-text-white-ter has-text-centered">
+          Join the Discussion
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="field">
             <div className="control">
@@ -58,26 +60,29 @@ const CommentBox: React.FC<CommentBoxProps> = ({ eventId, fetchComments }) => {
               ></textarea>
             </div>
           </div>
-
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button is-link" type="submit">
-                Post
-              </button>
-            </div>
-            <div className="control">
-              <button
-                className="button is-light"
-                type="button"
-                onClick={() => setComment("")}
-              >
-                Cancel
-              </button>
+          <div className="level">
+            <div className="level-item has-text-centered">
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-link " type="submit">
+                    Post
+                  </button>
+                </div>
+                <div className="control">
+                  <button
+                    className="button is-light"
+                    type="button"
+                    onClick={() => setComment("")}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </form>
       </div>
-    </section>
+    </article>
   );
 };
 

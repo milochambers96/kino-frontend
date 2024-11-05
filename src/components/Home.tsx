@@ -8,22 +8,67 @@ const messages = [
 const Frame = ({ index }: { index: number }) => (
   <div className="tw-flex-none tw-mr-1">
     <div className="kino-grey tw-relative tw-w-56 md:tw-w-72 tw-h-36 md:tw-h-48 tw-border-2 tw-border-gray-800">
-      {/* Top Film Reel Sprocket holes */}
-      <div className="tw-absolute -tw-top-3 tw-left-0 tw-w-full tw-flex tw-justify-between tw-px-2">
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
+      {/* Top Film Reel Strip */}
+      <div className="tw-absolute -tw-top-3 tw-left-0 tw-w-full tw-h-4 tw-bg-gray-800">
+        <div className="tw-w-full tw-h-full tw-flex tw-justify-between tw-px-2 tw-items-center">
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+        </div>
       </div>
-      {/* Bottom Film Reel Sprocket holes */}
-      <div className="tw-absolute -tw-bottom-3 tw-left-0 tw-w-full tw-flex tw-justify-between tw-px-2">
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-        <div className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full" />
-      </div>
-      {/* Film 'Slides' Content */}
 
+      {/* Bottom Film Reel Strip */}
+      <div className="tw-absolute -tw-bottom-3 tw-left-0 tw-w-full tw-h-4 tw-bg-gray-800">
+        <div className="tw-w-full tw-h-full tw-flex tw-justify-between tw-px-2 tw-items-center">
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+          <div
+            className="tw-w-2 tw-h-2 tw-rounded-full tw-bg-transparent tw-border-2 tw-border-transparent"
+            style={{
+              boxShadow: "0 0 0 2px transparent, inset 0 0 0 2px #1a1a1a",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Film 'Slides' Content */}
       <div className="tw-flex tw-items-center tw-justify-center tw-h-full tw-px-4">
         <p className="is-size-6-mobile is-size-5-tablet has-text-white-ter">
           {messages[index % messages.length]}

@@ -56,10 +56,13 @@ function EventDetails({
   return (
     <div id="event-details" className="card kino-grey has-text-white-ter">
       <header className="card-header">
-        <p className="card-header-title">
-          {title} <span> @ </span>
-          <Link to={`/cinemas/${cinemaId}`}>{location.name}</Link>
-        </p>
+        <h2 className="card-header-title">
+          {title}
+          {" @ "}
+          <Link className="has-text-link" to={`/cinemas/${cinemaId}`}>
+            {location.name}
+          </Link>
+        </h2>
       </header>
       <div className="card-image">
         <figure className="image is-4by3">
@@ -68,7 +71,7 @@ function EventDetails({
       </div>
       <div className="card-content">
         <div className="content">
-          <p>{description}</p>
+          <p className="has-text-justified">{description}</p>
 
           <p>
             Notice posted by <strong>{author.username}</strong>
@@ -85,9 +88,15 @@ function EventDetails({
           )}
           <p>
             Discover more about {title}{" "}
-            <a href={eventLink} target="_blank" rel="noopener noreferrer">
-              here.
+            <a
+              className="has-text-link"
+              href={eventLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
             </a>
+            .
           </p>
         </div>
       </div>

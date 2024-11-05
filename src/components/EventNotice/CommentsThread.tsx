@@ -1,7 +1,8 @@
-import { IComment } from "../../interfaces/comment";
 import axios from "axios";
 import { useState } from "react";
 import { baseUrl } from "../../config";
+
+import { IComment } from "../../interfaces/comment";
 
 interface CommentsThreadProps extends IComment {
   user: string | null;
@@ -68,7 +69,7 @@ function CommentsThread({
   }
 
   return (
-    <article className="media ml-5 box kino-grey has-text-white-ter">
+    <article className="media box kino-grey has-text-white-ter tw-relative">
       <div className="media-content">
         <div className="content">
           <p>
@@ -84,7 +85,7 @@ function CommentsThread({
                 onChange={(e) => setEditedComment(e.target.value)}
               ></textarea>
             ) : (
-              <span>{content}</span>
+              <span className="has-text-justified">{content}</span>
             )}
             <br />
           </p>
@@ -94,7 +95,6 @@ function CommentsThread({
                 <button
                   className="button is-small is-success mt-3"
                   onClick={() => {
-                    console.log("Save button clicked");
                     editComment();
                   }}
                 >
@@ -104,7 +104,6 @@ function CommentsThread({
                 <button
                   className="button is-small is-link mt-3"
                   onClick={() => {
-                    console.log("Edit button clicked");
                     setIsEditing(true);
                   }}
                 >
