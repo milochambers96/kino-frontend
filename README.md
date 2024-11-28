@@ -6,6 +6,8 @@ Kino Connect is a platform that connects independent cinemas with film enthusias
 
 Built over the course of one week as a solo project, it serves as the frontend for the [Kino Connect Backend](https://github.com/milochambers96/kino-backend).
 
+Kino Connect is deployed at [https://kino-connect.netlify.app](https://kino-connect.netlify.app)
+
 ## Technologies Used
 
 - TypeScript & React
@@ -16,6 +18,7 @@ Built over the course of one week as a solo project, it serves as the frontend f
 - Custom CSS for theming
 - Axios for API communication
 - JWT for authentication
+- Tailwind for custom animation
 
 ## Quick Start
 
