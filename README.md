@@ -78,6 +78,8 @@ function Signup() {
 }
 ```
 
+![sign up form](./public/assets/ReadMeScreenshots/signup.png)
+
 #### Login Component
 
 The Login component manages user authentication, handling JWT token storage and user role verification. It integrates with the backend authentication system and provides error feedback for invalid credentials.
@@ -102,6 +104,8 @@ function Login({ fetchUser }: { fetchUser: Function }) {
   }
 }
 ```
+
+![login form](./public/assets/ReadMeScreenshots/login.png)
 
 ### Cinema Management Components
 
@@ -140,6 +144,10 @@ function CinemaMap() {
   }, [map, selectedArea]);
 }
 ```
+
+![Kino Map, with no filter](./public//assets/ReadMeScreenshots/kino-map-all-areas.png)
+
+![Kino Map, with filters](./public/assets/ReadMeScreenshots/kino-map-filter.png)
 
 #### CinemaForm Component
 
@@ -224,6 +232,8 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
 }
 ```
 
+![Cinema profile with events listing](./public/assets/ReadMeScreenshots/example-cinema-noticeboard.png)
+
 #### EventNoticeBoard Component
 
 The EventNoticeBoard component handles individual event displays and their associated comments. It manages user interactions, comment threading, and permission-based content modification. The component provides real-time comment updates and handles both recurring and specific date events differently.
@@ -285,6 +295,8 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   );
 }
 ```
+
+![Event details with comment thread](./public/assets/ReadMeScreenshots/example-event-noticeboard.png)
 
 ### Event Management Components
 
@@ -359,7 +371,7 @@ function Home() {
 }
 ```
 
-[Screenshot: Original static homepage with centered text over background]
+![Original Kino Connect Homepage](./public/assets/ReadMeScreenshots/original-homepage.png)
 
 ## Enhanced Animation Design
 
@@ -448,7 +460,7 @@ The infinite scroll effect is achieved through several key technical components:
 - A 4px margin (tw-mr-1) between frames
 - Total width calculation includes all frames and margins
 
-[Screenshot: New animated homepage showing film reel effect]
+![Updated Homepage](./public/assets/ReadMeScreenshots/revised-homepage.png)
 
 ## Technical Challenges and Solutions
 
@@ -487,8 +499,6 @@ The infinite scroll effect is achieved through several key technical components:
 - Used viewport-relative measurements where appropriate
 - Adjusted frame sizes and counts based on screen width
 - Maintained aspect ratios across different devices
-
-[Screenshot: Mobile view of animated homepage]
 
 This enhancement serves multiple purposes:
 
