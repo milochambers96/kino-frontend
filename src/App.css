@@ -14,16 +14,6 @@ body {
   font-family: "Anton", sans-serif;
 }
 
-.kino-background {
-  background-image: url("/assets/Kino-Connect-Background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
-}
-
 .kino-gradient {
   background-image: radial-gradient(
     circle,
