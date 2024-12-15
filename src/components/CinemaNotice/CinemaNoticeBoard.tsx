@@ -93,7 +93,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
               </>
             )}
           </div>
-          <div className="is-hidden-desktop is-hidden-tablet">
+          <div className="is-hidden-desktop is-hidden-tablet kino-scroll">
             <div className="tabs is-centered">
               <ul>
                 <li className={mobileTab === "cinema" ? "is-active" : ""}>
@@ -104,7 +104,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                 </li>
               </ul>
             </div>
-            <div className="columns is-multiline is-centered kino-scroll">
+            <div className="columns is-multiline is-centered">
               {isLoading ? (
                 <FullPageLoader />
               ) : (
@@ -119,7 +119,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                     </div>
                   )}
                   {events && mobileTab === "events" && (
-                    <div className="column is-full-mobile kino-scroll">
+                    <div className="column is-full-mobile">
                       <div id="events-thread">
                         <div className="box kino-grey">
                           <h2 className="has-text-white-ter has-text-centered is-size-5">
