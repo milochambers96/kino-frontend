@@ -303,7 +303,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
 
 #### EventForm Component
 
-A sophisticated form component handling event creation and updates, featuring a dual date system for specific and recurring events. The component dynamically renders different input fields based on the selected date type and handles image uploads through Cloudinary.
+A form component handling event creation and updates, featuring a dual date system for specific and recurring events. The component dynamically renders different input fields based on the selected date type and handles image uploads through Cloudinary.
 
 ```typescript
 function EventForm() {
@@ -347,168 +347,6 @@ function EventForm() {
   );
 }
 ```
-
-## Homepage Evolution Documentation
-
-## Initial Design
-
-The original homepage featured a simple, static design with centered text overlay:
-
-```typescript
-// Initial Homepage Implementation
-function Home() {
-  return (
-    <section className="kino-background">
-      <div className="content-container is-flex is-justify-content-center is-align-items-center">
-        <div className="kino-content has-text-centered kino-title">
-          <p className="title has-text-white-ter">Kino Connect</p>
-          <p className="subtitle has-text-white-ter mt-2">
-            Independent Cinema, Together.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
-
-![Original Kino Connect Homepage](./public/assets/ReadMeScreenshots/original-homepage.png)
-
-## Enhanced Animation Design
-
-Post-sprint, the homepage was reimagined to better convey the app's purpose through an animated film reel design. This enhancement required several technical implementations:
-
-### 1. Tailwind Configuration
-
-```typescript
-// tailwind.config.ts
-import type { Config } from "tailwindcss";
-
-const config: Config = {
-  prefix: "tw-", // Prevents conflicts with existing Bulma classes
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      animation: {
-        scroll: "scroll 15s linear infinite",
-      },
-      keyframes: {
-        scroll: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" }, // Moves exactly one set width
-        },
-      },
-    },
-  },
-  plugins: [],
-};
-```
-
-### 2. Frame Component Architecture
-
-```typescript
-const Frame = ({ index }: { index: number }) => (
-  <div className="tw-flex-none tw-mr-1">
-    <div className="kino-grey tw-relative tw-w-72 tw-h-48 tw-border-2 tw-border-gray-800">
-      {/* Authentic film reel sprocket holes */}
-      <div className="tw-absolute -tw-top-3 tw-left-0 tw-w-full tw-flex tw-justify-between tw-px-2">
-        {/* 4 sprocket holes per side matching 35mm film standard */}
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full"
-          />
-        ))}
-      </div>
-      <div className="tw-flex tw-items-center tw-justify-center tw-h-full">
-        <p className="is-size-5 has-text-white-ter">
-          {messages[index % messages.length]}
-        </p>
-      </div>
-    </div>
-  </div>
-);
-```
-
-### 3. Infinite Scroll Implementation
-
-The infinite scroll effect is achieved through several key technical components:
-
-1. **Dual Frame Sets**: Two identical sets of frames are rendered to create the illusion of continuous movement:
-
-```typescript
-<div className="tw-animate-scroll tw-flex tw-flex-nowrap">
-  {/* First set of frames */}
-  {[...Array(12)].map((_, index) => (
-    <Frame key={index} index={index} />
-  ))}
-  {/* Clone set - creates seamless transition */}
-  {[...Array(12)].map((_, index) => (
-    <Frame key={`clone-${index}`} index={index} />
-  ))}
-</div>
-```
-
-2. **CSS Animation**: Using transform and translate for smooth performance:
-
-- The animation moves the entire container left by exactly one set width (-50%)
-- When the first set moves off-screen, the second set is in the exact position where the first set started
-- The animation resets to 0% instantly, but the viewer doesn't notice because the frames are identical
-
-3. **Frame Spacing**: Precise calculations ensure seamless transitions:
-
-- Each frame is exactly 288px wide (tw-w-72)
-- A 4px margin (tw-mr-1) between frames
-- Total width calculation includes all frames and margins
-
-![Updated Homepage](./public/assets/ReadMeScreenshots/revised-homepage.png)
-
-## Technical Challenges and Solutions
-
-### 1. CSS Framework Integration
-
-**Challenge**: Integrating Tailwind with existing Bulma CSS without conflicts
-**Solution**:
-
-- Used Tailwind's prefix option (`tw-`) to namespace all Tailwind classes
-- Maintained Bulma classes for existing components
-- Carefully managed overlapping styles through specific class ordering
-
-### 2. Smooth Animation Performance
-
-**Challenge**: Initial implementation using React state caused stuttering
-**Solution**:
-
-- Switched to pure CSS animation for better performance
-- Used transform instead of left/margin properties
-- Implemented GPU acceleration through transform3d
-
-### 3. Frame Timing
-
-**Challenge**: Creating truly seamless transitions between frame sets
-**Solution**:
-
-- Calculated exact pixel widths for frames and gaps
-- Used precise timing in animation duration
-- Ensured second set positioning matched first set exactly
-
-### 4. Mobile Responsiveness
-
-**Challenge**: Maintaining animation smoothness on different screen sizes
-**Solution**:
-
-- Used viewport-relative measurements where appropriate
-- Adjusted frame sizes and counts based on screen width
-- Maintained aspect ratios across different devices
-
-This enhancement serves multiple purposes:
-
-1. Technical showcase of advanced CSS animations
-2. Creative solution to conveying site purpose
-3. Engagement through dynamic content
-4. Thematic consistency with cinema subject matter
-
-The implementation demonstrates both technical proficiency in animation techniques and thoughtful UX design, creating an engaging introduction to the application's purpose.
 
 ## Utility Functions
 
@@ -669,6 +507,253 @@ function CinemaMap() {
 - Custom notification preferences
 - Weekly digest emails
 - Push notifications
+
+## Post-Sprint Enhancements
+
+### November 2024 - Homepage Animation
+
+#### Initial Design
+
+The original homepage featured a simple, static design with centered text overlay:
+
+```typescript
+// Initial Homepage Implementation
+function Home() {
+  return (
+    <section className="kino-background">
+      <div className="content-container is-flex is-justify-content-center is-align-items-center">
+        <div className="kino-content has-text-centered kino-title">
+          <p className="title has-text-white-ter">Kino Connect</p>
+          <p className="subtitle has-text-white-ter mt-2">
+            Independent Cinema, Together.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+![Original Kino Connect Homepage](./public/assets/ReadMeScreenshots/original-homepage.png)
+
+#### Enhanced Animation Design
+
+Post-sprint, the homepage was reimagined to better convey the app's purpose through an animated film reel design. This enhancement required several technical implementations:
+
+##### 1. Tailwind Configuration
+
+```typescript
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  prefix: "tw-", // Prevents conflicts with existing Bulma classes
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      animation: {
+        scroll: "scroll 15s linear infinite",
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }, // Moves exactly one set width
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+```
+
+##### 2. Frame Component Architecture
+
+```typescript
+const Frame = ({ index }: { index: number }) => (
+  <div className="tw-flex-none tw-mr-1">
+    <div className="kino-grey tw-relative tw-w-72 tw-h-48 tw-border-2 tw-border-gray-800">
+      {/* Authentic film reel sprocket holes */}
+      <div className="tw-absolute -tw-top-3 tw-left-0 tw-w-full tw-flex tw-justify-between tw-px-2">
+        {/* 4 sprocket holes per side matching 35mm film standard */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="tw-w-2 tw-h-2 tw-bg-gray-800 tw-rounded-full"
+          />
+        ))}
+      </div>
+      <div className="tw-flex tw-items-center tw-justify-center tw-h-full">
+        <p className="is-size-5 has-text-white-ter">
+          {messages[index % messages.length]}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+```
+
+##### 3. Infinite Scroll Implementation
+
+The infinite scroll effect is achieved through several key technical components:
+
+1. **Dual Frame Sets**: Two identical sets of frames are rendered to create the illusion of continuous movement:
+
+```typescript
+<div className="tw-animate-scroll tw-flex tw-flex-nowrap">
+  {/* First set of frames */}
+  {[...Array(12)].map((_, index) => (
+    <Frame key={index} index={index} />
+  ))}
+  {/* Clone set - creates seamless transition */}
+  {[...Array(12)].map((_, index) => (
+    <Frame key={`clone-${index}`} index={index} />
+  ))}
+</div>
+```
+
+2. **CSS Animation**: Using transform and translate for smooth performance:
+
+- The animation moves the entire container left by exactly one set width (-50%)
+- When the first set moves off-screen, the second set is in the exact position where the first set started
+- The animation resets to 0% instantly, but the viewer doesn't notice because the frames are identical
+
+3. **Frame Spacing**: Precise calculations ensure seamless transitions:
+
+- Each frame is exactly 288px wide (tw-w-72)
+- A 4px margin (tw-mr-1) between frames
+- Total width calculation includes all frames and margins
+
+![Updated Homepage](./public/assets/ReadMeScreenshots/revised-homepage.png)
+
+#### Technical Challenges and Solutions
+
+##### 1. CSS Framework Integration
+
+**Challenge**: Integrating Tailwind with existing Bulma CSS without conflicts
+**Solution**:
+
+- Used Tailwind's prefix option (`tw-`) to namespace all Tailwind classes
+- Maintained Bulma classes for existing components
+- Carefully managed overlapping styles through specific class ordering
+
+##### 2. Smooth Animation Performance
+
+**Challenge**: Initial implementation using React state caused stuttering
+**Solution**:
+
+- Switched to pure CSS animation for better performance
+- Used transform instead of left/margin properties
+- Implemented GPU acceleration through transform3d
+
+##### 3. Frame Timing
+
+**Challenge**: Creating truly seamless transitions between frame sets
+**Solution**:
+
+- Calculated exact pixel widths for frames and gaps
+- Used precise timing in animation duration
+- Ensured second set positioning matched first set exactly
+
+##### 4. Mobile Responsiveness
+
+**Challenge**: Maintaining animation smoothness on different screen sizes
+**Solution**:
+
+- Used viewport-relative measurements where appropriate
+- Adjusted frame sizes and counts based on screen width
+- Maintained aspect ratios across different devices
+
+This enhancement serves multiple purposes:
+
+1. Technical showcase of advanced CSS animations
+2. Creative solution to conveying site purpose
+3. Engagement through dynamic content
+4. Thematic consistency with cinema subject matter
+
+The implementation demonstrates both technical proficiency in animation techniques and thoughtful UX design, creating an engaging introduction to the application's purpose.
+
+### December 2024 - Gradient Design Refactor
+
+#### Overview
+
+Post-sprint, the background gradient system was refactored to improve scrolling behavior and component reusability across the application. This enhancement resolved viewport constraints and simplified the overall layout structure.
+
+#### Original Implementation
+
+Initially, the gradient was handled through a CSS class:
+
+```css
+.kino-gradient {
+  background-image: radial-gradient(
+    circle,
+    #d43726a4 30%,
+    #95303ca1 65%,
+    #6b234f5a 80%,
+    #361228 90%,
+    #34141c 100%
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+```
+
+#### Improved Component Solution
+
+The gradient was transformed into a reusable React component to resolve viewport constraints and scrolling issues:
+
+```typescript
+const KinoGradientBackground = ({ children }: GradientBackgroundProps) => {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        width: "100%",
+        position: "relative",
+        backgroundImage: `radial-gradient(
+          circle,
+          #d43726a4 30%,
+          #95303ca1 65%,
+          #6b234f5a 80%,
+          #361228 90%,
+          #34141c 100%
+        )`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+```
+
+#### Benefits
+
+The enhancement provided several key improvements:
+
+1. Resolved scrolling issues caused by viewport constraints
+2. Improved component reusability across the application
+3. Simplified the layout structure by removing unnecessary wrapper elements
+4. Better encapsulation of gradient styling
+5. More consistent behavior across different page layouts
+
+#### Implementation
+
+The component is now used as a direct wrapper for page content:
+
+```typescript
+<KinoGradientBackground>
+  // The Rest of Kino Connect's content
+</KinoGradientBackground>
+```
+
+This simplified approach eliminated the need for multiple wrapper elements while maintaining the visual design of the application.
 
 ## Deployment
 
