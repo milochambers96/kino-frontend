@@ -35,7 +35,7 @@ function Navbar({ user, setUser, isCinemaOwner }: NavbarProps) {
               {user && (
                 <>
                   <span className="navbar-item has-text-white-ter is-hidden-desktop">
-                    {`Hi ${user.username}, welcome back to Kino Connect`}
+                    {`Hi ${user.username}`}
                   </span>
                 </>
               )}
