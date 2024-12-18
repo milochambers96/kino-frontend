@@ -57,7 +57,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
   }, [eventId, fetchComments]);
 
   return (
-    <section className="section kino-gradient">
+    <section className="section">
       <div className="container mt-5">
         <div className="columns is-multiline is-centered is-hidden-mobile">
           {isLoading ? (
@@ -83,7 +83,9 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
                 ) : (
                   <p className="subtitle kino-grey kino-comment has-text-white-ter">
                     <span>
-                      <Link to="/login">Login </Link>
+                      <Link to="/login" className="has-text-link">
+                        Login{" "}
+                      </Link>
                     </span>
                     to post a comment
                   </p>

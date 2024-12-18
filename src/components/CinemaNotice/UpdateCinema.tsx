@@ -38,23 +38,21 @@ function UpdateCinema() {
   }
 
   return (
-    <div className="kino-gradient">
-      <div className="section mt-5">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-              <div className="kino-form">
-                <CinemaForm
-                  initialData={initialData}
-                  onSubmit={handleSubmit}
-                  formErrorData={formErrorData}
-                />
-              </div>
+    <section className="section mt-5">
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
+            <div className="kino-form">
+              <CinemaForm
+                initialData={initialData}
+                onSubmit={handleSubmit}
+                formErrorData={formErrorData}
+              />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

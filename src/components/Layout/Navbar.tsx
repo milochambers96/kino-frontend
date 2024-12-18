@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { IUser } from "../interfaces/user";
+import { IUser } from "../../interfaces/user";
 
 interface NavbarProps {
   user: null | IUser;

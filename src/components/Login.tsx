@@ -49,66 +49,63 @@ function Login({ fetchUser }: { fetchUser: Function }) {
   }
 
   return (
-    <div className="kino-gradient">
-      <div className="section mt-5">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-              <form onSubmit={handleSubmit} className="kino-form">
-                <div className="field">
-                  <label htmlFor="email" className="label">
-                    Email:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                    {formErrorData.email && (
-                      <small className="has-text-warning">
-                        {formErrorData.email}
-                      </small>
-                    )}
-                  </div>
+    <section className="section mt-5">
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
+            <form onSubmit={handleSubmit} className="kino-form">
+              <div className="field">
+                <label htmlFor="email" className="label">
+                  Email:
+                </label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.email && (
+                    <small className="has-text-warning">
+                      {formErrorData.email}
+                    </small>
+                  )}
                 </div>
-                <div className="field">
-                  <label htmlFor="password" className="label">
-                    Password:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      className="input"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
-                    {formErrorData.password && (
-                      <small className="has-text-warning">
-                        {formErrorData.password}
-                      </small>
-                    )}
-                  </div>
+              </div>
+              <div className="field">
+                <label htmlFor="password" className="label">
+                  Password:
+                </label>
+                <div className="control">
+                  <input
+                    type="password"
+                    className="input"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.password && (
+                    <small className="has-text-warning">
+                      {formErrorData.password}
+                    </small>
+                  )}
                 </div>
-                <div className="field is-flex is-justify-content-center mt-3">
-                  <button className="button is-link">Login</button>
-                </div>
-                <div className="has-text-centered mt-5">
-                  <p>
-                    Don't have an account? Signup{" "}
-                    <Link to={"/signup"}>here</Link> to connect with the Kino
-                    community.
-                  </p>
-                </div>
-              </form>
-            </div>
+              </div>
+              <div className="field is-flex is-justify-content-center mt-3">
+                <button className="button is-link">Login</button>
+              </div>
+              <div className="has-text-centered mt-5">
+                <p>
+                  Don't have an account? Signup <Link to={"/signup"}>here</Link>{" "}
+                  to connect with the Kino community.
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

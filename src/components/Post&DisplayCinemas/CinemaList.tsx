@@ -27,7 +27,7 @@ function CinemaList() {
   );
 
   return (
-    <section className="section kino-gradient">
+    <section className="section">
       {isLoading ? (
         <FullPageLoader />
       ) : (

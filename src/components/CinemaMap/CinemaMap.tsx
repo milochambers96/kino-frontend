@@ -76,32 +76,30 @@ const CinemaMap: React.FC = () => {
   };
 
   return (
-    <div className="kino-gradient">
-      <div className="map-flex">
-        <div className="filter-container has-background-danger-dark mt-3">
-          <div className="filter-label">
-            <p className="subtitle has-text-white-ter">Filter by area -</p>
-          </div>
-          <div className="select is-rounded is-danger">
-            <select
-              value={selectedArea}
-              onChange={handleAreaChange}
-              className="area-filter"
-            >
-              <option value="All">All Areas</option>
-              <option value="North">North</option>
-              <option value="West">West</option>
-              <option value="Central">Central</option>
-              <option value="South">South</option>
-              <option value="East">East</option>
-            </select>
-          </div>
+    <section className="map-flex">
+      <div className="filter-container has-background-danger-dark mt-3">
+        <div className="filter-label">
+          <p className="subtitle has-text-white-ter">Filter by area -</p>
         </div>
-        <div className="map-container">
-          <div id="map"></div>
+        <div className="select is-rounded is-danger">
+          <select
+            value={selectedArea}
+            onChange={handleAreaChange}
+            className="area-filter"
+          >
+            <option value="All">All Areas</option>
+            <option value="North">North</option>
+            <option value="West">West</option>
+            <option value="Central">Central</option>
+            <option value="South">South</option>
+            <option value="East">East</option>
+          </select>
         </div>
       </div>
-    </div>
+      <div className="map-container">
+        <div id="map"></div>
+      </div>
+    </section>
   );
 };
 

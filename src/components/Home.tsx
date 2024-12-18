@@ -80,7 +80,7 @@ const Frame = ({ index }: { index: number }) => (
 
 function Home() {
   return (
-    <section className="kino-gradient tw-relative tw-h-screen tw-w-full tw-overflow-hidden">
+    <section className="tw-relative tw-h-screen tw-w-full tw-overflow-hidden">
       {/* Title container with responsive padding and margin */}
       <div className="tw-w-full tw-text-center tw-pt-16 md:tw-pt-20 tw-mt-16 md:tw-mt-32">
         <h1 className="is-size-2-mobile is-size-1-tablet has-text-white-ter tw-font-bold title">

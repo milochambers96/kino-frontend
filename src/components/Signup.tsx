@@ -49,128 +49,126 @@ function Signup() {
   }
 
   return (
-    <div className="kino-gradient">
-      <div className="section mt-5">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
-              <form onSubmit={handleSubmit} className="kino-form">
-                <div className="field">
-                  <label htmlFor="username" className="label">
-                    Username:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      name="username"
-                      value={signupFormData.username}
+    <section className="section mt-5">
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
+            <form onSubmit={handleSubmit} className="kino-form">
+              <div className="field">
+                <label htmlFor="username" className="label">
+                  Username:
+                </label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    name="username"
+                    value={signupFormData.username}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.username && (
+                    <small className="has-text-warning">
+                      {formErrorData.username}
+                    </small>
+                  )}
+                </div>
+              </div>
+              <div className="field">
+                <label htmlFor="email" className="label">
+                  Email:
+                </label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    name="email"
+                    value={signupFormData.email}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.email && (
+                    <small className="has-text-warning">
+                      {formErrorData.email}
+                    </small>
+                  )}
+                </div>
+              </div>
+              <div className="field">
+                <label htmlFor="role" className="label">
+                  Account Type:
+                </label>
+                <div className="control">
+                  <div className="select">
+                    <select
+                      name="role"
+                      value={signupFormData.role}
                       onChange={handleChange}
-                    />
-                    {formErrorData.username && (
-                      <small className="has-text-warning">
-                        {formErrorData.username}
-                      </small>
-                    )}
+                    >
+                      <option value="" disabled>
+                        Select Account Type
+                      </option>
+                      <option value="Cinema">Cinema</option>
+                      <option value="Film Fanatic">Film Fanatic</option>
+                    </select>
                   </div>
+                  {formErrorData.role && (
+                    <small className="has-text-warning">
+                      {formErrorData.role}
+                    </small>
+                  )}
                 </div>
-                <div className="field">
-                  <label htmlFor="email" className="label">
-                    Email:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      name="email"
-                      value={signupFormData.email}
-                      onChange={handleChange}
-                    />
-                    {formErrorData.email && (
-                      <small className="has-text-warning">
-                        {formErrorData.email}
-                      </small>
-                    )}
-                  </div>
+              </div>
+              <div className="field">
+                <label htmlFor="password" className="label">
+                  Password:
+                </label>
+                <div className="control">
+                  <input
+                    type="password"
+                    className="input"
+                    name="password"
+                    value={signupFormData.password}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.password && (
+                    <small className="has-text-warning">
+                      {formErrorData.password}
+                    </small>
+                  )}
                 </div>
-                <div className="field">
-                  <label htmlFor="role" className="label">
-                    Account Type:
-                  </label>
-                  <div className="control">
-                    <div className="select">
-                      <select
-                        name="role"
-                        value={signupFormData.role}
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled>
-                          Select Account Type
-                        </option>
-                        <option value="Cinema">Cinema</option>
-                        <option value="Film Fanatic">Film Fanatic</option>
-                      </select>
-                    </div>
-                    {formErrorData.role && (
-                      <small className="has-text-warning">
-                        {formErrorData.role}
-                      </small>
-                    )}
-                  </div>
+              </div>
+              <div className="field">
+                <label htmlFor="passwordConfirmation" className="label">
+                  Password Confirmation:
+                </label>
+                <div className="control">
+                  <input
+                    type="password"
+                    className="input"
+                    name="passwordConfirmation"
+                    value={signupFormData.passwordConfirmation}
+                    onChange={handleChange}
+                  />
+                  {formErrorData.passwordConfirmation && (
+                    <small className="has-text-warning">
+                      {formErrorData.passwordConfirmation}
+                    </small>
+                  )}
                 </div>
-                <div className="field">
-                  <label htmlFor="password" className="label">
-                    Password:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      className="input"
-                      name="password"
-                      value={signupFormData.password}
-                      onChange={handleChange}
-                    />
-                    {formErrorData.password && (
-                      <small className="has-text-warning">
-                        {formErrorData.password}
-                      </small>
-                    )}
-                  </div>
-                </div>
-                <div className="field">
-                  <label htmlFor="passwordConfirmation" className="label">
-                    Password Confirmation:
-                  </label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      className="input"
-                      name="passwordConfirmation"
-                      value={signupFormData.passwordConfirmation}
-                      onChange={handleChange}
-                    />
-                    {formErrorData.passwordConfirmation && (
-                      <small className="has-text-warning">
-                        {formErrorData.passwordConfirmation}
-                      </small>
-                    )}
-                  </div>
-                </div>
-                <div className="field is-flex is-justify-content-center mt-4">
-                  <button className="button is-link">Signup</button>
-                </div>
-                <div className="has-text-centered mt-5">
-                  <p>
-                    Already have an account? Re-connect with the Kino community{" "}
-                    <Link to={"/login"}>here</Link>.
-                  </p>
-                </div>
-              </form>
-            </div>
+              </div>
+              <div className="field is-flex is-justify-content-center mt-4">
+                <button className="button is-link">Signup</button>
+              </div>
+              <div className="has-text-centered mt-5">
+                <p>
+                  Already have an account? Re-connect with the Kino community{" "}
+                  <Link to={"/login"}>here</Link>.
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

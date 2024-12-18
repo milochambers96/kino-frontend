@@ -8,27 +8,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
   font-family: "Anton", sans-serif;
-}
-
-.kino-gradient {
-  background-image: radial-gradient(
-    circle,
-    #d43726a4 30%,
-    #95303ca1 65%,
-    #6b234f5a 80%,
-    #361228 90%,
-    #34141c 100%
-  );
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
 }
 
 .kino-form-wrapper {
@@ -46,11 +26,11 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.kino-scroll {
+/* .kino-scroll {
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
   padding: 1rem;
-}
+} */
 
 .kino-event-thread-header {
   background-color: rgba(6, 6, 6, 0.7);

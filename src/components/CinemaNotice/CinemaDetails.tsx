@@ -68,9 +68,15 @@ function CinemaDetails({
           <p>{bio}</p>
           <p>
             Discover more about {name}{" "}
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              here.
+            <a
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="has-text-link"
+            >
+              here
             </a>
+            .
           </p>
         </div>
       </div>
