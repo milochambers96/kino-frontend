@@ -26,11 +26,11 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* .kino-scroll {
+.kino-scroll {
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
   padding: 1rem;
-} */
+}
 
 .kino-event-thread-header {
   background-color: rgba(6, 6, 6, 0.7);

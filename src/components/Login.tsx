@@ -49,7 +49,10 @@ function Login({ fetchUser }: { fetchUser: Function }) {
   }
 
   return (
-    <section className="section mt-5">
+    <section
+      className="section is-flex is-justify-content-center is-align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
       <div className="container">
         <div className="columns is-centered">
           <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">

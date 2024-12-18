@@ -31,7 +31,7 @@ function CinemaList() {
       {isLoading ? (
         <FullPageLoader />
       ) : (
-        <div className="container mt-5 kino-scroll">
+        <div className="container mt-5">
           <div className="columns is-centered">
             <div className="column is-one-third">
               <div className="field">

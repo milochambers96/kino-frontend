@@ -52,7 +52,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
 
               <div className="column is-one-half-desktop is-one-half-tablet kino-scroll">
                 <div id="events-thread">
-                  <div className="box kino-grey">
+                  <article className="box kino-grey">
                     <h2 className="has-text-white-ter has-text-centered is-size-5">
                       Events at {cinema?.name}
                     </h2>
@@ -75,8 +75,8 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                         to post an event
                       </p>
                     )}
-                  </div>
-                  <div>
+                  </article>
+                  <article>
                     {events.length > 0 ? (
                       events.map((event) => (
                         <EventsThread {...event} key={event._id} />
@@ -86,13 +86,13 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                         No events have been posted at {cinema?.name}.
                       </p>
                     )}
-                  </div>
+                  </article>
                 </div>
               </div>
             </>
           )}
         </div>
-        <div className="is-hidden-desktop is-hidden-tablet kino-scroll">
+        <div className="is-hidden-desktop is-hidden-tablet">
           <div className="tabs is-centered">
             <ul>
               <li className={mobileTab === "cinema" ? "is-active" : ""}>
@@ -103,7 +103,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
               </li>
             </ul>
           </div>
-          <div className="columns is-multiline is-centered">
+          <article className="columns is-multiline is-centered">
             {isLoading ? (
               <FullPageLoader />
             ) : (
@@ -144,7 +144,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                           </p>
                         )}
                       </div>
-                      <div className="kino-scroll">
+                      <div>
                         {events.length > 0 ? (
                           events.map((event) => (
                             <EventsThread {...event} key={event._id} />
@@ -160,7 +160,7 @@ function CinemaNoticeBoard({ user }: { user: null | IUser }) {
                 )}
               </>
             )}
-          </div>
+          </article>
         </div>
       </div>
     </section>

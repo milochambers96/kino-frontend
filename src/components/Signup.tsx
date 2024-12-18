@@ -49,7 +49,10 @@ function Signup() {
   }
 
   return (
-    <section className="section mt-5">
+    <section
+      className="section is-flex is-justify-content-center is-align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
       <div className="container">
         <div className="columns is-centered">
           <div className="column is-half-desktop is-three-quarters-tablet is-full-mobile">
@@ -161,7 +164,10 @@ function Signup() {
               <div className="has-text-centered mt-5">
                 <p>
                   Already have an account? Re-connect with the Kino community{" "}
-                  <Link to={"/login"}>here</Link>.
+                  <Link to={"/login"} className="has-text-link">
+                    here
+                  </Link>
+                  .
                 </p>
               </div>
             </form>

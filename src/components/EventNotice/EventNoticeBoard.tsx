@@ -112,7 +112,7 @@ function EventNoticeBoard({ user }: { user: null | IUser }) {
             </>
           )}
         </div>
-        <div className="is-hidden-desktop is-hidden-tablet kino-scroll">
+        <div className="is-hidden-desktop is-hidden-tablet">
           <div className="tabs is-centered">
             <ul>
               <li className={mobileTab === "event" ? "is-active" : ""}>
