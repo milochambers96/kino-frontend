@@ -1,10 +1,16 @@
+<div align="right">
+<img src="https://github.com/user-attachments/assets/8e011908-6485-4d07-8808-010c11679b34" alt="GA Logo" width="80" height="auto" />
+</div>
+
 # Kino Connect Frontend
 
 ## Overview
 
+This was my third project during the software engineering bootcamp at General Assembly, London. The assignment was to solo build a full-stack MERN (MongoDB, Express, React, Node.js) application with CRUD functionality over the course of one week. This project also marked my first venture into TypeScript, adding an exciting layer of learning to the development process.
+
 Kino Connect is a platform that connects independent cinemas with film enthusiasts, allowing venues to showcase their unique events and engage with their community. This frontend application, built with React and TypeScript, provides an interactive interface for cinema discovery, event management, and community engagement.
 
-Built over the course of one week as a solo project, it serves as the frontend for the [Kino Connect Backend](https://github.com/milochambers96/kino-backend). The live application can be found at [Kino Connect](https://kino-connect.netlify.app).
+The project serves as the frontend for the [Kino Connect Backend](https://github.com/milochambers96/kino-backend). The live application can be found at [Kino Connect](https://kino-connect.netlify.app).
 
 ## Technologies Used
 
